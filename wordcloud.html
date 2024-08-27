@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>McCain Compromiso</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            background: url('background-image.jpg') no-repeat center center fixed; /* Replace with your background image */
+            background-size: cover;
+            height: 100vh;
+            color: #333;
+        }
+        .container {
+            text-align: center;
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 40px 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 300px;
+            width: 100%;
+        }
+        .container img {
+            width: 100px;
+            margin-bottom: 20px;
+        }
+        .container h2 {
+            font-size: 1.2em;
+            margin-bottom: 5px;
+        }
+        .container p {
+            font-size: 0.9em;
+            margin-bottom: 20px;
+        }
+        .container input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1em;
+        }
+        .container button {
+            width: 100%;
+            padding: 10px;
+            font-size: 1em;
+            color: white;
+            background-color: #333;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .container button:hover {
+            background-color: #555;
+        }
+        .footer {
+            margin-top: 20px;
+            font-size: 0.9em;
+            color: #777;
+        }
+        .footer span {
+            color: #FFD700; /* Yellow color for the dot */
+        }
+        .footer a {
+            display: block;
+            margin-top: 10px;
+            color: #333;
+            text-decoration: none;
+        }
+        .footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="logo-mccain.png" alt="McCain Logo"> <!-- Replace with your logo image -->
+        <h2>¿Cuál es tu compromiso de cara al 2030?</h2>
+        <p>Nosotros generamos la nube de palabras por vos con IA.</p>
+        <input type="text" id="respuesta" placeholder="Ingresa tu respuesta...">
+        <button id="enviar">Enviar</button>
+        <div class="footer">
+            <p>We are McCain<span>.</span></p>
+            <a id="exit">Salir</a>
+        </div>
+    </div>
+</body>
+<script>
+    var pushtext_url = "http://localhost:8000/api/v1/push-text";
+    //on page load
+    if (!localStorage.getItem('auth')) {
+        window.location.href = '/index.html';
+    }
+    document.getElementById('exit').addEventListener('click', () => {
+        localStorage.removeItem('auth');
+        window.location.href = '/index.html';
+    });
+    document.getElementById('enviar').addEventListener('click', () => {
+        var respuesta = document.getElementById('respuesta').value;
+        fetch(pushtext_url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({"text": respuesta})
+        }).then(response => response.json())
+        .then(data => {
+            if (data.status) {
+            // Image URL is valid
+            console.log("push text status:", data.status);
+            window.location.href = '/success.html';
+            } else {
+            console.log("Invalid text pushed");
+            alert("Error al enviar la respuesta. Por favor, inténtalo de nuevo.");
+            }
+        })
+        .catch(error => {
+            console.error("Error:", error);
+        });
+    });
+
+</script>
+</html>
