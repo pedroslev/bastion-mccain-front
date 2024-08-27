@@ -79,6 +79,34 @@ button.secondary {
     color: #333;
 }
 
+.text-input-group {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.text-input-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 16px;
+    color: #333;
+    font-family: 'Montserrat', sans-serif; /* Fuente para el texto común */
+}
+
+.text-input-group input{
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-family: 'Montserrat', sans-serif; /* Fuente para el texto común */
+    box-sizing: border-box;
+    color: #333;
+}
+
+.text-input-group input::placeholder {
+    color: #999;
+}
+
 footer p {
     color: #222;
     font-size: 12px;
