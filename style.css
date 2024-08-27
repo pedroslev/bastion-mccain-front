@@ -1,6 +1,5 @@
 body {
     font-family: 'Montserrat', sans-serif;
-    background-color: #f4f4f4;
     margin: 0;
     padding: 0;
     display: flex;
@@ -23,14 +22,14 @@ body {
 }
 
 h1 {
-    color: #222;
+    color: #000000;
     font-family:'Red Hat Display', sans-serif;
     font-size: 24px;
     margin-bottom: 10px;
 }
 
 p {
-    color: #555;
+    color: #434043;
     font-size: 14px;
     margin-bottom: 20px;
 }
@@ -44,7 +43,7 @@ p {
     display: block;
     margin-bottom: 10px;
     font-size: 16px;
-    color: #333;
+    color: #434043;
 }
 
 span{
@@ -70,13 +69,13 @@ button {
 }
 
 button.primary {
-    background-color: #222;
+    background-color: #434043;
     color: white;
 }
 
 button.secondary {
     background-color: #f4f4f4;
-    color: #333;
+    color: #434043;
 }
 
 .text-input-group {
@@ -88,7 +87,7 @@ button.secondary {
     display: block;
     margin-bottom: 8px;
     font-size: 16px;
-    color: #333;
+    color: #434043;
     font-family: 'Montserrat', sans-serif; /* Fuente para el texto común */
 }
 
@@ -96,20 +95,43 @@ button.secondary {
     width: 100%;
     padding: 10px;
     font-size: 16px;
-    border: 1px solid #ccc;
+    border: 1px solid #D9DAE4;
     border-radius: 5px;
     font-family: 'Montserrat', sans-serif; /* Fuente para el texto común */
     box-sizing: border-box;
-    color: #333;
+    color: #434043;
 }
 
 .text-input-group input::placeholder {
-    color: #999;
+    color: #434043;
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: transparent; /* Para que el fondo del footer sea transparente */
+    text-align: center;
+    right: 0;
 }
 
 footer p {
-    color: #222;
+    margin: 0;
+    padding: 20px 0; /* Ajusta el padding según el espacio que desees */
+    font-family: 'Montserrat', sans-serif; /* Fuente para el texto común */
+    color: #434043;
     font-size: 12px;
-    margin-top: 20px;
     font-weight: bold;
+}
+
+/* Línea amarilla */
+footer::after {
+    content: "";
+    display: block;
+    height: 8px; /* Altura de la línea */
+    background-color: #FEE000;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
 }
