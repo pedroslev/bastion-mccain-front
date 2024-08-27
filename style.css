@@ -12,6 +12,43 @@ body {
     background-position: center;
 }
 
+/* Estilos para el header */
+header {
+    width: 100%;
+    padding: 10px 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000; 
+}
+
+.header-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+}
+
+.header-logo img {
+    width: 80px; 
+}
+
+.header-title h2 {
+    margin: 0;
+    font-family: 'Red Hat Display', sans-serif; /* Usa Red Hat Display para el título */
+    font-size: 24px;
+    color: black;
+}
+
+.header-right p {
+    margin: 0;
+    font-family: 'Montserrat', sans-serif; /* Usa Montserrat para el texto a la derecha */
+    font-size: 16px;
+    color: black;
+}
+
 .content {
     text-align: center;
 }
@@ -108,17 +145,26 @@ button.secondary {
 
 footer {
     position: fixed;
+    padding-bottom: 20px;
     bottom: 0;
     width: 100%;
-    background-color: transparent; /* Para que el fondo del footer sea transparente */
+    background-color: transparent;
     text-align: center;
     right: 0;
 }
 
+footer a {
+    margin: 0;
+    color: #000000;
+    font-size: 12px;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
 footer p {
     margin: 0;
-    padding: 20px 0; /* Ajusta el padding según el espacio que desees */
-    font-family: 'Montserrat', sans-serif; /* Fuente para el texto común */
+    padding: 10px 0; 
+    font-family: 'Montserrat', sans-serif; 
     color: #000000;
     font-size: 12px;
     font-weight: bold;
