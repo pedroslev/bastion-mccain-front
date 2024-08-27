@@ -20,7 +20,7 @@
             </div>
 
             <div class="buttons">
-                <button type="button" class="primary" id="ingresar">Ingresar</button>
+                <button type="button" class="primary" id="send">Enviar</button>
             </div>
         </form>
         <footer>
@@ -39,7 +39,7 @@
         localStorage.removeItem('auth');
         window.location.href = '/index.html';
     });
-    document.getElementById('enviar').addEventListener('click', () => {
+    document.getElementById('send').addEventListener('click', () => {
         var respuesta = document.getElementById('respuesta').value;
         fetch(pushtext_url, {
             method: 'POST',

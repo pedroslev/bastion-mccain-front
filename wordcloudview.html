@@ -6,6 +6,23 @@
     <title>McCain 2030</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&family=Red+Hat+Display:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* Add styles directly here or in your style.css */
+        .main-content {
+            max-width: 100%;
+            height: auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .text-image {
+            max-width: 100%;
+            max-height: 80vh; /* Adjust based on how much of the viewport height you want to use */
+            object-fit: contain; /* Ensures the image scales properly within its container */
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -22,9 +39,32 @@
         </div>
     </header>
     <div class="main-content">
-        <img src="media/wordcloud.png" alt="McCain Wordcloud" class="text-image">
+        <img src="" alt="McCain Wordcloud" class="text-image" id="wordcloud_image">
     </div>
     <footer>
     </footer>
+
+    <script>
+        var generateWordCloudUrl = "http://localhost:8000/api/v1/generate-wordcloud";    
+
+        window.addEventListener('load', function() {
+            // Request to generate the word cloud and get the image URL
+            fetch(generateWordCloudUrl)
+                .then(response => response.json())
+                .then(data => {
+                    // Check if the URL is provided in the response
+                    if (data.wordcloud_image_url) {
+                        var wordcloudImage = document.getElementById('wordcloud_image');
+                        wordcloudImage.src = data.wordcloud_image_url;
+                    } else {
+                        throw new Error('Failed to retrieve the wordcloud image URL');
+                    }
+                })
+                .catch(error => {
+                    // Handle any errors
+                    console.error('Error:', error);
+                });
+        });
+    </script>
 </body>
 </html>
