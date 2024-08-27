@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>McCain Login</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: url('fondo.jpg') no-repeat center center fixed; 
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: #333;
+        }
+        .container {
+            text-align: center;
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .container img {
+            width: 150px;
+            margin-bottom: 20px;
+        }
+        .container h1 {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
+        .container input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1em;
+        }
+        .container button {
+            padding: 10px 20px;
+            font-size: 1em;
+            color: white;
+            background-color: #333;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .container button:hover {
+            background-color: #555;
+        }
+        .container .footer {
+            margin-top: 20px;
+            font-size: 0.9em;
+            color: #777;
+        }
+        .container .footer span {
+            color: #FFD700; /* Color amarillo para el punto */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="logo-mccain.png" alt="McCain Logo"> <!-- Reemplaza 'logo-mccain.png' con la imagen de tu logo -->
+        <h1>Clave de acceso<span>.</span></h1>
+        <input type="password" placeholder="Ingresa tu clave...">
+        <button id="ingresar">Ingresar</button>
+        <div class="footer">
+            <p>We are McCain<span>.</span></p>
+        </div>
+    </div>
+</body>
+<script>
+    document.getElementById('ingresar').addEventListener('click', function() {
+        //get password input, md5 it and comparate with these ones
+        //viewer
+        var visualizer = "4b2a1529867b8d697685b1722ccd0149"
+        //bastion
+        var admin = "cb8db1f49337e4a9fc660e68dd5fd3f1"
+        //user
+        var user = "ee11cbb19052e40b07aac0ca060c23ee"
+        var password = document.querySelector('input[type="password"]').value
+        password = md5(password);
+        if (password == visualizer) {
+            window.location.href = "visualizer.html"
+        } else if (password == admin) {
+            window.location.href = "bastion.html"
+        } else if (password == user) {
+            window.location.href = "user.html"
+        } else {
+            alert("Clave incorrecta")
+        }
+    });
+</script>
+</html>
