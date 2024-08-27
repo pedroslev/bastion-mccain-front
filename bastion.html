@@ -15,30 +15,67 @@
         </div>
         <h1>Administrador<span>.</span></h1>
         <p>Podes elegir qué se visualizará en la presentación</p>
-        <form>
             <div class="radio-group">
                 <label>
-                    <input type="radio" name="option" value="espera" checked>
+                    <input type="radio" name="option" value="NULL" checked>
                     Evento en espera
                 </label>
                 <label>
-                    <input type="radio" name="option" value="nube">
+                    <input type="radio" name="option" value="WORDCLOUD">
                     Nube de Palabras
                 </label>
                 <label>
-                    <input type="radio" name="option" value="imagenes">
+                    <input type="radio" name="option" value="IA">
                     Generador de imágenes
                 </label>
             </div>
             <div class="buttons">
-                <button type="button" class="secondary">Salir</button>
-                <button type="button" class="secondary">Reiniciar Nube de palabras</button>
-                <button type="submit" class="primary">Guardar</button>
+                <button type="button" id="exit" class="secondary">Salir</button>
+                <button type="button" id="restartWordcloud" class="secondary">Reiniciar Nube de palabras</button>
+                <button type="submit" id="save" class="primary">Guardar</button>
             </div>
-        </form>
         <footer>
             <p>We are McCain<span>.</span></p>
         </footer>
     </div>
 </body>
+<script>
+    //on load check for auth and and adm
+    if (!localStorage.getItem('auth') || !localStorage.getItem('adm')) {
+        window.location.href = '/index.html';
+    }
+    var save_url = "http://localhost:8000/api/v1/state";
+    var restart_url = "http://localhost:8000/api/v1/restart-wordcloud";
+    // listeners
+    document.getElementById('exit').addEventListener('click', () => {
+        localStorage.removeItem('auth');
+        localStorage.removeItem('adm');
+        localStorage.removeItem('load');
+        window.location.href = '/index.html';
+    });
+    document.getElementById('restartWordcloud').addEventListener('click', () => {
+        fetch(restart_url, {
+            method: 'GET'
+        })
+        .then(response => response.json())
+        .then(data => {
+
+            alert("Nube de palabras reiniciada");
+        });
+    });
+    document.getElementById('save').addEventListener('click', () => {
+        var option = document.querySelector('input[name="option"]:checked').value;
+        fetch(save_url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({"text": option})
+        })
+        .then(response => response.json())
+        .then(data => {
+            window.location.href = '/bastionsuccess.html';
+        });
+    });
+</script>
 </html>
