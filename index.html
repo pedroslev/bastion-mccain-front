@@ -72,27 +72,54 @@
             <p>We are McCain<span>.</span></p>
         </div>
     </div>
+
+    <!-- Include the MD5 library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/blueimp-md5/2.18.0/js/md5.min.js"></script>
+
+    <script>
+        document.getElementById('ingresar').addEventListener('click', function() {
+            // MD5 hashed passwords for comparison
+            var visualizer = "4b2a1529867b8d697685b1722ccd0149";
+            var admin = "cb8db1f49337e4a9fc660e68dd5fd3f1";
+            var user = "ee11cbb19052e40b07aac0ca060c23ee";
+            var backend_url = "http://localhost:8000/api/v1";
+            // Get the input password and hash it using MD5
+            var password = document.querySelector('input[type="password"]').value;
+            password = md5(password);
+            var load_endpoint = backend_url + "/load";
+            // Compare the hashed password with the predefined hashes
+            if (password === visualizer) {
+                window.location.href = "visualizer.html";
+            } else if (password === admin) {
+                window.location.href = "bastion.html";
+            } else if (password === user) {
+                //fetch load from server
+                fetch(load_endpoint)
+                    .then(response => response.json())
+                    .then(data => {
+                        localStorage.setItem('load', data.load);
+                        switch(data.load) {
+                            case "IA":
+                                window.location.href = "user.html";
+                                break;
+                            case "NULL":
+                                window.location.href = "null.html";
+                                break;
+                            case "wordcloud":
+                                window.location.href = "wordcloud.html";
+                                break;
+                            default:
+                                window.location.href = "user2.html";
+                                break;
+                        }
+                        
+                    });
+
+                window.location.href = "user.html";
+            } else {
+                alert("Clave incorrecta");
+            }
+        });
+    </script>
 </body>
-<script>
-    document.getElementById('ingresar').addEventListener('click', function() {
-        //get password input, md5 it and comparate with these ones
-        //viewer
-        var visualizer = "4b2a1529867b8d697685b1722ccd0149"
-        //bastion
-        var admin = "cb8db1f49337e4a9fc660e68dd5fd3f1"
-        //user
-        var user = "ee11cbb19052e40b07aac0ca060c23ee"
-        var password = document.querySelector('input[type="password"]').value
-        password = md5(password);
-        if (password == visualizer) {
-            window.location.href = "visualizer.html"
-        } else if (password == admin) {
-            window.location.href = "bastion.html"
-        } else if (password == user) {
-            window.location.href = "user.html"
-        } else {
-            alert("Clave incorrecta")
-        }
-    });
-</script>
 </html>
