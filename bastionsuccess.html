@@ -4,79 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>McCain Actualización de Presentación</title>
-    <style>
-        body {
-            font-family:'Red Hat Display', sans-serif;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            background: url('background-image.jpg') no-repeat center center fixed; /* Replace with your background image */
-            background-size: cover;
-            height: 100vh;
-            color: #333;
-        }
-        .container {
-            text-align: center;
-            background-color: rgba(255, 255, 255, 0.9);
-            padding: 40px 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            max-width: 300px;
-            width: 100%;
-        }
-        .container img {
-            width: 100px;
-            margin-bottom: 20px;
-        }
-        .container h2 {
-            font-size: 1.2em;
-            margin-bottom: 20px;
-            font-weight: bold;
-        }
-        .container button, .container .link-button {
-            width: 100%;
-            padding: 10px;
-            font-size: 1em;
-            color: white;
-            background-color: #333;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            margin-bottom: 10px;
-        }
-        .container .link-button {
-            background-color: #f2f2f2;
-            color: #333;
-            border: 1px solid #ccc;
-        }
-        .container button:hover, .container .link-button:hover {
-            background-color: #555;
-        }
-        .container .link-button:hover {
-            background-color: #ddd;
-        }
-        .footer {
-            margin-top: 20px;
-            font-size: 0.9em;
-            color: #777;
-        }
-        .footer span {
-            color: #FFD700; /* Yellow color for the dot */
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&family=Red+Hat+Display:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="container">
-        <img src="logo-mccain.png" alt="McCain Logo"> <!-- Replace with your logo image -->
-        <h2>Genial, la presentación se ha actualizado<span>.</span></h2>
-        <button id="back" class="link-button">Volver</button>
-        <button id="exit">Salir</button>
-        <div class="footer">
-            <p>We are McCain<span>.</span></p>
+    <div class="content">
+        <div class="logo">
+            <img src="media/logo.png" alt="McCain">
         </div>
+        <h1>Genial, la presentación se ha actualizado<span>.</span></h1>
+        <div class="buttons">
+            <button id="back" class="primary">Volver</button>
+            <button id="exit" class="secondary">Salir</button>
+        </div>
+        <footer>
+            <p>We are McCain<span>.</span></p>
+        </footer>
     </div>
 </body>
 <script>
