@@ -43,9 +43,9 @@
     </div>
     <footer>
     </footer>
-
+    <script src="config.js"></script>
     <script>
-        var generateWordCloudUrl = "http://localhost:8000/api/v1/generate-wordcloud";    
+        var generateWordCloudUrl = config.backendUrl+"/generate-wordcloud";    
 
         window.addEventListener('load', function() {
             // Request to generate the word cloud and get the image URL

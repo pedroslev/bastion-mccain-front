@@ -29,8 +29,9 @@
         </footer>
     </div>
 </body>
+<script src="config.js"></script>
 <script>
-    var pushtext_url = "http://localhost:8000/api/v1/push-text";
+    var pushtext_url = config.backendUrl+"/push-text";
     //on page load
     if (!localStorage.getItem('auth')) {
         window.location.href = '/index.html';

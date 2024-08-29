@@ -28,8 +28,9 @@
         </footer>
     </div>
 </body>
+<script src="config.js"></script>
 <script>
-    var genai_url = "http://localhost:8000/api/v1/generate";
+    var genai_url = config.backendUrl+ "/generate";
     //on page load
     if (!localStorage.getItem('auth')) {
         window.location.href = '/index.html';

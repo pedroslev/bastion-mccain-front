@@ -39,13 +39,14 @@
         </footer>
     </div>
 </body>
+<script src="config.js"></script>
 <script>
     //on load check for auth and and adm
     if (!localStorage.getItem('auth') || !localStorage.getItem('adm')) {
         window.location.href = '/index.html';
     }
-    var save_url = "http://localhost:8000/api/v1/state";
-    var restart_url = "http://localhost:8000/api/v1/restart-wordcloud";
+    var save_url = config.backendUrl+"/state";
+    var restart_url = config.backendUrl+"/restart-wordcloud";
     // listeners
     document.getElementById('exit').addEventListener('click', () => {
         localStorage.removeItem('auth');
