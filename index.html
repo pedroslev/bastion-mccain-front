@@ -8,26 +8,28 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&family=Red+Hat+Display:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
+    <div class="logo">
+        <img src="media/headerLogo.png" alt="Highway 2030 Logo">
+    </div>
     <div class="content">
-        <div class="logo">
-            <img src="media/logo.png" alt="McCain">
-        </div>
-        <h1>Clave de acceso<span>.</span></h1>
+        <h1>Access token<span>.</span></h1>
         <form>
             <div class="text-input-group">
-                <input type="password" id="custom-text" name="custom-text" placeholder="Ingresa tu clave...">
+                <input type="password" id="custom-text" name="custom-text" placeholder="Enter your access token here">
             </div>
-
             <div class="buttons">
-                <button type="button" class="primary" id="ingresar">Ingresar</button>
+                <button type="button" class="primary" id="ingresar">Log in</button>
             </div>
         </form>
-        <footer>
-            <p>We are McCain<span>.</span></p>
-        </footer>
     </div>
+    <footer>
+        <div class="footer-content">
+            <img src="media/footer.png" alt="McCain Logo">
+        </div>
+        <div class="footer-line"></div>
+    </footer>
 
-    <!-- Include the enccription and config lib-->
+    <!-- Include the encryption and config lib -->
     <script src="config.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
 

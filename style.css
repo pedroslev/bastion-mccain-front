@@ -1,183 +1,108 @@
 body {
-    font-family: 'Montserrat', sans-serif;
+    font-family:'Red Hat Display', sans-serif;
     margin: 0;
     padding: 0;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    background-image: url('media/cielo.png'); /* Imagen de fondo */
-    background-size: cover;
-    background-position: center;
-}
-
-/* Estilos para el header */
-header {
-    width: 100%;
-    padding: 10px 0;
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 1000; 
-}
-
-.header-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 20px;
-}
-
-.header-logo img {
-    width: 80px; 
-}
-
-.header-title h2 {
-    margin: 0;
-    font-family: 'Red Hat Display', sans-serif; /* Usa Red Hat Display para el título */
-    font-size: 24px;
-    color: black;
-}
-
-.header-right p {
-    margin: 0;
-    font-family: 'Montserrat', sans-serif; /* Usa Montserrat para el texto a la derecha */
-    font-size: 16px;
-    color: black;
+    min-height: 100vh;
+    background-color: #000; /* Dark background */
+    color: #fff; /* White text */
 }
 
 .content {
     text-align: center;
+    width: 90%;
+    max-width: 400px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding-top: 10em;
 }
 
 .logo img {
-    width: 150px; /* Ajusta el tamaño según lo necesites */
-    margin-bottom: 20px;
+    width: 250px; /* Adjusted size for better visibility */
+    margin-top: 30px;
+    height: 8em;
 }
 
 h1 {
-    color: #000000;
-    font-family:'Red Hat Display', sans-serif;
-    font-size: 24px;
-    margin-bottom: 10px;
-}
-
-p {
-    color: #434043;
-    font-size: 14px;
+    color: #ffffff;
+    font-family: 'Red Hat Display', sans-serif;
+    font-size: 2.5em;
     margin-bottom: 20px;
 }
 
-.radio-group {
-    text-align: left;
-    margin-bottom: 20px;
-}
-
-.radio-group label {
-    display: block;
-    margin-bottom: 10px;
-    font-size: 16px;
-    color: #434043;
-}
-
-span{
-    color: #FEE000;
-}
-
-.radio-group input {
-    margin-right: 10px;
-}
-
-.buttons {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
-button {
-    padding: 10px;
-    font-size: 16px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-button.primary {
-    background-color: #434043;
-    color: white;
-}
-
-button.secondary {
-    background-color: #f4f4f4;
-    color: #434043;
+h1 span {
+    color: #FFD700; /* Yellow for emphasis */
 }
 
 .text-input-group {
     margin-bottom: 20px;
-    text-align: left;
 }
 
-.text-input-group label {
-    display: block;
-    margin-bottom: 8px;
-    font-size: 16px;
-    color: #434043;
-    font-family: 'Montserrat', sans-serif; /* Fuente para el texto común */
-}
-
-.text-input-group input{
+.text-input-group input {
     width: 100%;
-    padding: 10px;
+    padding: 15px;
     font-size: 16px;
-    border: 1px solid #D9DAE4;
+    border: none;
     border-radius: 5px;
-    font-family: 'Montserrat', sans-serif; /* Fuente para el texto común */
-    box-sizing: border-box;
+    background-color: #fff; /* White background for input */
     color: #434043;
+    box-sizing: border-box;
 }
 
 .text-input-group input::placeholder {
-    color: #434043;
+    color: #999; /* Grey placeholder text */
+}
+
+.buttons {
+    margin-top: 20px;
+}
+
+button.primary {
+    width: 100%;
+    padding: 15px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    background-color: #434043; /* Dark grey button */
+    color: white; /* White text */
+    cursor: pointer;
+}
+
+button.primary:hover {
+    background-color: #555; /* Slightly lighter on hover */
 }
 
 footer {
-    position: fixed;
-    padding-bottom: 20px;
-    bottom: 0;
     width: 100%;
-    background-color: transparent;
     text-align: center;
-    right: 0;
-}
-
-footer a {
-    margin: 0;
-    color: #000000;
-    font-size: 12px;
-    cursor: pointer;
-    text-decoration: underline;
-}
-
-footer p {
-    margin: 0;
-    padding: 10px 0; 
-    font-family: 'Montserrat', sans-serif; 
-    color: #000000;
-    font-size: 12px;
-    font-weight: bold;
-}
-
-/* Línea amarilla */
-footer::after {
-    content: "";
-    display: block;
-    height: 8px; /* Altura de la línea */
-    background-color: #FEE000;
-    position: absolute;
+    position: fixed;
     bottom: 0;
     left: 0;
-    right: 0;
+    background-color: #000;
+}
+
+.footer-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+}
+
+.footer-content img {
+    margin-bottom: 5px;
+}
+
+footer p span {
+    color: #FFD700; /* Yellow for emphasis */
+}
+
+.footer-line {
+    width: 100%;
+    height: 15px; /* Height for the yellow line */
+    bottom: 0px;
+    background-color: #FFD700; /* Yellow line */
 }
