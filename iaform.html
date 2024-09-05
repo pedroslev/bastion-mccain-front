@@ -1,31 +1,37 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>McCain Compromiso</title>
+    <title>Commitment for 2030</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&family=Red+Hat+Display:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
+    <div class="logo">
+        <img src="media/headerLogo.png" alt="Highway 2030 Logo">
+    </div>
     <div class="content">
-        <div class="logo">
-            <img src="media/headerLogo.png" alt="McCain">
-        </div>
         <h1>What is your commitment for 2030?</h1>
         <form>
             <div class="text-input-group">
-                <textarea id="respuesta" rows="4" cols="50">Answer with a phrase here</textarea>
+                <input type="text" id="commitment" name="commitment" placeholder="Answer with a phrase here">
             </div>
             <div class="buttons">
-                <button type="button" class="primary" id="enviar">Send</button>
+                <button type="button" class="primary" id="send">Send</button>
             </div>
         </form>
-        <footer>
-            <p>We are McCain<span>.</span></p>
-            <a id="exit">Salir</a>
-        </footer>
     </div>
+    <footer>
+        <div class="footer-content">
+            <a id="exit">
+                <img src="media/exit.png" alt="Exit Icon">
+                <p>Exit</p>
+            </a>
+            <img src="media/footer.png" alt="McCain Logo">
+        </div>
+        <div class="footer-line"></div>
+    </footer>
 </body>
 <script src="config.js"></script>
 <script>

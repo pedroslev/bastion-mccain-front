@@ -9,35 +9,59 @@
     </head>
     
 <body>
+    <div class="logo">
+        <img src="media/headerLogo.png" alt="McCain">
+    </div>
     <div class="content">
-        <div class="logo">
-            <img src="media/logo.png" alt="McCain">
-        </div>
-        <h1>Administrador<span>.</span></h1>
-        <p>Podes elegir qué se visualizará en la presentación</p>
+      
+        <h1>Administrator<span>.</span></h1>
             <div class="radio-group">
                 <label>
                     <input type="radio" name="option" value="NULL" checked>
-                    Evento en espera
+                    On Hold
                 </label>
                 <label>
                     <input type="radio" name="option" value="WORDCLOUD">
-                    Nube de Palabras
+                    Word Cloud
                 </label>
                 <label>
                     <input type="radio" name="option" value="IA">
-                    Generador de imágenes
+                    IA image generator
+                </label>
+                <label>
+                    <input type="radio" name="option" value="1moment">
+                    1st Moment
+                </label>
+                <label>
+                    <input type="radio" name="option" value="2moment">
+                    2nd Moment
+                </label>
+                <label>
+                    <input type="radio" name="option" value="3moment">
+                    3rd Moment
+                </label>
+                <label>
+                    <input type="radio" name="option" value="4moment">
+                    4th Moment
                 </label>
             </div>
             <div class="buttons">
-                <button type="button" id="exit" class="secondary">Salir</button>
-                <button type="button" id="restartWordcloud" class="secondary">Reiniciar Nube de palabras</button>
-                <button type="submit" id="save" class="primary">Guardar</button>
+                <button type="submit" id="save" class="primary">Save</button>
             </div>
-        <footer>
-            <p>We are McCain<span>.</span></p>
-        </footer>
     </div>
+    <footer>
+        <div class="footer-content">
+            <a id="exit">
+                <img src="media/exit.png" alt="Exit Icon">
+                <p>Exit</p>
+            </a>
+            <a id="restartWordcloud">
+                <p>Restart word cloud</p>
+            </a>
+            <img src="media/footer.png" alt="McCain Logo">
+        </div>
+    <div class="footer-line"></div>
+    </footer>
 </body>
 <script src="config.js"></script>
 <script>
