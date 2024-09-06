@@ -8,29 +8,35 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&family=Red+Hat+Display:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="content">
+    <div class="container">
         <div class="logo">
-            <img src="media/logo.png" alt="McCain">
         </div>
-        <h1>¿Cuál es tu compromiso de cara al 2030?</h1>
-        <p>Nosotros generamos la nube de palabras por vos con IA.</p>
-        <form>
-            <div class="text-input-group">
-                <input type="text" id="respuesta" placeholder="Ingresa tu respuesta...">
-            </div>
-
-            <div class="buttons">
-                <button type="button" class="primary" id="send">Enviar</button>
-            </div>
-        </form>
-        <footer>
-            <p>We are McCain<span>.</span></p>
-            <a id="exit">Salir</a>
-        </footer>
+        <div class="content-textarea">
+            <h2>What do you hope to get from our time together?</h2>
+                <form>
+                    <div class="text-input-group">
+                        <input type="password" id="custom-text" name="custom-text" placeholder="Answer here...">
+                    </div>
+                    <div class="buttons">
+                        <button type="button" class="primary" id="ingresar">Log in</button>
+                    </div>
+                </form>
+        </div>
     </div>
+    <footer>
+        <div class="footer-content">
+            <a id="exit">
+                <img src="media/exit.png" alt="Exit Icon">
+                <p>Exit</p>
+            </a>
+            <img src="media/footer.png" alt="McCain Logo">
+        </div>
+        <div class="footer-line"></div>
+    </footer>
 </body>
 <script src="config.js"></script>
 <script>
+    /*
     var pushtext_url = config.backendUrl+"/push-text";
     //on page load
     if (!localStorage.getItem('auth')) {
@@ -63,6 +69,7 @@
             console.error("Error:", error);
         });
     });
+    */
 
 </script>
 </html>
