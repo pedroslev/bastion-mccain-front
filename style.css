@@ -1,3 +1,19 @@
+/* Define Regular weight */
+@font-face {
+    font-family: 'Red Hat Display';
+    src: url('../assets/fonts/RedHatDisplay-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
+
+/* Define Black weight */
+@font-face {
+    font-family: 'Red Hat Display';
+    src: url('../assets/fonts/RedHatDisplay-Black.ttf') format('truetype');
+    font-weight: 900;
+    font-style: normal;
+}
+
 body {
     font-family:'Red Hat Display', sans-serif;
     margin-top: 100px;
@@ -32,6 +48,12 @@ body {
     margin-top: 162px;
 }
 
+.content-textarea {
+    text-align: center;
+    width: 100%;
+    margin-top: 100px;
+}
+
 h1 {
     color: #ffffff;
     font-family: 'Red Hat Display', sans-serif;
@@ -40,12 +62,30 @@ h1 {
     text-align: left;
 }
 
+h2 {
+    color: #ffffff;
+    font-family: 'Red Hat Display', sans-serif;
+    font-size: 1.5em;
+    margin-bottom: 20px;
+    text-align: left;
+}
+
 h1 span {
     color: #FFD700; /* Yellow for emphasis */
 }
 
+p{
+    margin: 0px;
+    font-size: 12px;
+}
+
 .text-input-group {
     margin-bottom: 20px;
+}
+
+.text-area-group {
+    margin-bottom:20px;
+    margin-top:20px;
 }
 
 .text-input-group input {
@@ -59,8 +99,26 @@ h1 span {
     box-sizing: border-box;
 }
 
+.text-area-group textarea {
+    width: 100%;
+    padding: 15px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    background-color: #fff; /* White background for input */
+    color: #434043;
+    box-sizing: border-box;
+}
+
+.text-area-group textarea::placeholder{
+    font-family: Montserrat, sans-serif;
+    color: #b2b0b0;
+    font-size:14px;
+}
+
 .text-input-group input::placeholder {
-    color: #999; /* Grey placeholder text */
+    font-family: Montserrat, sans-serif;
+    color: #b2b0b0; /* Grey placeholder text */
 }
 
 .buttons {
@@ -95,7 +153,7 @@ footer {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-bottom: 63px;
+    margin-bottom: 24px;
 }
 
 .footer-content img {
@@ -107,6 +165,18 @@ footer {
     height: 10px; /* Height for the yellow line */
     background-color: #FFD700; /* Yellow line */
 }
+
+#exit{
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    align-content: center;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    margin-bottom:24px;
+}
+
 
 /* Responsive adjustments */
 @media (max-width: 600px) {

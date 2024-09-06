@@ -8,19 +8,20 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&family=Red+Hat+Display:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="logo">
-        <img src="media/headerLogo.png" alt="Highway 2030 Logo">
-    </div>
-    <div class="content">
-        <h1>What is your commitment for 2030?</h1>
-        <form>
-            <div class="text-input-group">
-                <input type="text" id="commitment" name="commitment" placeholder="Answer with a phrase here">
-            </div>
-            <div class="buttons">
-                <button type="button" class="primary" id="send">Send</button>
-            </div>
-        </form>
+    <div class="container">
+        <div class="logo">
+        </div>
+        <div class="content-textarea">
+            <h2>What is your commitment for 2030?</h>
+            <form>
+                <div class="text-area-group">
+                    <textarea id="message" name="message" rows="4" cols="50" placeholder="Answer with a phrase here..."></textarea>
+                </div>
+                <div class="buttons">
+                    <button type="button" class="primary" id="ingresar">Send</button>
+                </div>
+            </form>
+        </div>
     </div>
     <footer>
         <div class="footer-content">
@@ -35,38 +36,39 @@
 </body>
 <script src="config.js"></script>
 <script>
-    var genai_url = config.backendUrl+ "/generate";
-    //on page load
-    if (!localStorage.getItem('auth')) {
-        window.location.href = '/index.html';
-    }
-    document.getElementById('exit').addEventListener('click', () => {
-        localStorage.removeItem('auth');
-        window.location.href = '/index.html';
-    });
-    document.getElementById('enviar').addEventListener('click', () => {
-        var respuesta = document.getElementById('respuesta').value;
-        fetch(genai_url, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({"text": respuesta})
-        }).then(response => response.json())
-        .then(data => {
-            if (data.image_url) {
-            // Image URL is valid
-            console.log("Image URL generated:", data.image_url);
-            window.location.href = '/success.html';
-            } else {
-            console.log("Invalid image URL");
-            alert("Error al generar la imagen. Por favor, inténtalo de nuevo.");
-            }
-        })
-        .catch(error => {
-            console.error("Error:", error);
+    
+    /* var genai_url = config.backendUrl + "/generate";
+        //on page load
+        if (!localStorage.getItem('auth')) {
+            window.location.href = '/index.html';
+        }
+        document.getElementById('exit').addEventListener('click', () => {
+            localStorage.removeItem('auth');
+            window.location.href = '/index.html';
         });
-    });
-
+        document.getElementById('enviar').addEventListener('click', () => {
+            var respuesta = document.getElementById('respuesta').value;
+            fetch(genai_url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ "text": respuesta })
+            }).then(response => response.json())
+                .then(data => {
+                    if (data.image_url) {
+                        // Image URL is valid
+                        console.log("Image URL generated:", data.image_url);
+                        window.location.href = '/success.html';
+                    } else {
+                        console.log("Invalid image URL");
+                        alert("Error al generar la imagen. Por favor, inténtalo de nuevo.");
+                    }
+                })
+                .catch(error => {
+                    console.error("Error:", error);
+                });
+        });
+ */
 </script>
 </html>
