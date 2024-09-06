@@ -8,20 +8,22 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&family=Red+Hat+Display:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="logo">
-        <img src="media/headerLogo.png" alt="Highway 2030 Logo">
+    <div class="container">
+        <div class="logo">
+        </div>
+        <div class="content-input">
+            <h1>Access token<span>.</span></h1>
+            <form>
+                <div class="text-input-group">
+                    <input type="password" id="custom-text" name="custom-text" placeholder="Enter your access token here">
+                </div>
+                <div class="buttons">
+                    <button type="button" class="primary" id="ingresar">Log in</button>
+                </div>
+            </form>
+        </div>
     </div>
-    <div class="content">
-        <h1>Access token<span>.</span></h1>
-        <form>
-            <div class="text-input-group">
-                <input type="password" id="custom-text" name="custom-text" placeholder="Enter your access token here">
-            </div>
-            <div class="buttons">
-                <button type="button" class="primary" id="ingresar">Log in</button>
-            </div>
-        </form>
-    </div>
+
     <footer>
         <div class="footer-content">
             <img src="media/footer.png" alt="McCain Logo">
@@ -49,24 +51,19 @@
             fetch(load_endpoint)
                 .then(response => response.text())
                 .then(data => {
-                    // Remove any potential extra quotes and store in localStorage
-                    var cleanData = data.replace(/^"|"$/g, ''); // Removes quotes from the start and end
+                    var cleanData = data.replace(/^"|"$/g, ''); 
                     localStorage.setItem('load', cleanData);
     
-                    // Retrieve the stored value and log the type
-                    var loadValue = localStorage.getItem('load').trim(); // Trim whitespace if any
+                    var loadValue = localStorage.getItem('load').trim(); 
                     console.log("Cleaned load data: ", loadValue);
                     console.log("Data type after cleaning:", typeof loadValue);
     
-                    // Compare the hashed password with the predefined hashes
                     if (password === visualizer) {
                         localStorage.setItem('auth', true);
                         if (loadValue === "WORDCLOUD") {
                             window.location.href = "wordcloudview.html";
                         } else if (loadValue === "IA") {
                             window.location.href = "iaview.html";
-                        } else if (loadValue === "NULL") {
-                            window.location.href = "nullview.html";
                         } else {
                             window.location.href = "nullview.html";
                         }
@@ -95,6 +92,5 @@
                 });
         });
     </script>
-    
 </body>
 </html>
