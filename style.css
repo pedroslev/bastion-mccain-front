@@ -228,7 +228,6 @@ h3 {
     font-size: 7em;
     text-align: center;
     max-width: 1300px;
-    height: 950px;
     align-content: center;
 }
 
@@ -243,13 +242,15 @@ h3 span {
     width: 100%;
     padding: 0 48px;
     box-sizing: border-box;
+    height: 80vh;
+    justify-content: center;
 }
 
 .logo-bs {
     width: 198px;
     height: 69px;
     flex-shrink: 0;
-    background-image: url(media/headerLogo.png);
+    background-image: url('media/headerLogo.png');
     background-position: center center;
     background-size: cover;
     background-repeat: no-repeat;
@@ -278,6 +279,35 @@ h3 span {
 
 .no-margin {
     margin: 0px;
+}
+
+.image-container {
+    position: relative;
+    width: 100vw;  /* Full viewport width */
+    height: 100vh; /* Full viewport height */
+    overflow: hidden;  /* Ensure no overflow */
+}
+
+/* First image */
+.image1 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;  /* Cover full width of the viewport */
+    height: 100vh; /* Cover full height of the viewport */
+    object-fit: cover;  /* Ensure the image covers the container without distortion */
+    z-index: 1;  /* Set the stacking order */
+}
+
+/* Second image */
+.image2 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 80vh;
+    object-fit: cover;
+    z-index: 2;  /* Higher z-index means this image is above the first one */
 }
 
 
