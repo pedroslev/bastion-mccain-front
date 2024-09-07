@@ -15,24 +15,31 @@
 }
 
 body {
-    font-family:'Red Hat Display', sans-serif;
-    margin-top: 100px;
+    font-family: 'Red Hat Display', sans-serif;
+    margin: 0;
     padding: 0;
     display: flex;
     justify-content: center;
-    align-items: start;
-    background-color: #000; /* Dark background */
-    color: #fff; /* White text */
+    align-items: center;
+    min-height: 100vh; /* Hace que el contenedor ocupe toda la altura de la ventana */
+    background-color: #000;
+    color: #fff;
+    flex-direction: column;
 }
 
 .container {
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-top: 5em;
+    margin-bottom: 5em;
+    justify-content: space-between; /* Espacio entre el logo y el footer */
     width: 100%;
-    max-width: 500px; /* Limit the container's width for responsiveness */
+    max-width: 500px;
+    height: 100%; /* Asegura que el contenedor ocupe toda la altura disponible */
     padding: 0 48px;
     box-sizing: border-box;
+    flex-grow: 1;
 }
 
 .logo {
@@ -50,9 +57,12 @@ body {
 }
 
 .content-input {
-    text-align: center;
     width: 100%;
-    margin-top: 162px;
+    flex-grow: 1; /* Hace que el contenido se expanda y ocupe el espacio vertical disponible */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Centra verticalmente el contenido dentro del contenedor */
+    text-align: center;
 }
 
 .content-textarea {
@@ -91,13 +101,24 @@ h1 span {
     color: #FFD700; /* Yellow for emphasis */
 }
 
+h2 span {
+    color: #FFD700; /* Yellow for emphasis */
+}
+
 p{
     margin: 0px;
     font-size: 12px;
 }
 
 .text-input-group {
-    margin-bottom: 20px;
+    margin-bottom: 30px;
+}
+
+.text-input-group label{
+    display: block;
+    text-align: left;
+    font-weight: bold;
+    margin-bottom: 5px;
 }
 
 .text-area-group {
@@ -137,6 +158,11 @@ p{
 .text-input-group input::placeholder {
     font-family: Montserrat, sans-serif;
     color: #b2b0b0; /* Grey placeholder text */
+}
+
+.radio-group label {
+    display: block;
+    text-align: left;
 }
 
 .buttons {
