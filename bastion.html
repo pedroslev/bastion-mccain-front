@@ -9,10 +9,10 @@
     </head>
     
 <body>
+    <div class="container">
     <div class="logo">
-        <img src="media/headerLogo.png" alt="McCain">
     </div>
-    <div class="content">
+    <div class="content-input">
       
         <h1>Administrator<span>.</span></h1>
             <div class="radio-group">
@@ -49,22 +49,28 @@
                 <button type="submit" id="save" class="primary">Save</button>
             </div>
     </div>
+    <div class="content-input">
+        <a id="exit">
+            <img src="media/exit.png" alt="Exit Icon">
+            <p>Exit</p>
+        </a>
+        <a id="restartWordcloud">
+            <p>Restart word cloud</p>
+        </a>
+    </div>
+</div>
+
     <footer>
         <div class="footer-content">
-            <a id="exit">
-                <img src="media/exit.png" alt="Exit Icon">
-                <p>Exit</p>
-            </a>
-            <a id="restartWordcloud">
-                <p>Restart word cloud</p>
-            </a>
             <img src="media/footer.png" alt="McCain Logo">
         </div>
     <div class="footer-line"></div>
     </footer>
+
 </body>
 <script src="config.js"></script>
 <script>
+     /*
     //on load check for auth and and adm
     if (!localStorage.getItem('auth') || !localStorage.getItem('adm')) {
         window.location.href = '/index.html';
@@ -102,5 +108,6 @@
             window.location.href = '/bastionsuccess.html';
         });
     });
+    */
 </script>
 </html>
