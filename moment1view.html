@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>McCain 2030</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&family=Red+Hat+Display:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <table class="tabla">
+        <thead>
+          <tr>
+            <th>What do you like about them?</th>
+            <th>What are your concerns?</th>
+            <th>What suggestions do you have to strengthen them?</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Respuesta 1</td>
+            <td>Respuesta 2</td>
+            <td>Respuesta 3</td>
+          </tr>
+          <tr>
+            <td>Respuesta 1</td>
+            <td>Respuesta 2</td>
+            <td>Respuesta 3</td>
+          </tr>
+          <tr>
+            <td>Respuesta 1</td>
+            <td>Respuesta 2</td>
+            <td>Respuesta 3</td>
+          </tr>
+          <tr>
+            <td>Respuesta 1</td>
+            <td>Respuesta 2</td>
+            <td>Respuesta 3</td>
+          </tr>
+          <tr>
+            <td>Respuesta 1</td>
+            <td>Respuesta 2</td>
+            <td>Respuesta 3</td>
+          </tr>
+          <tr>
+            <td>Respuesta 1</td>
+            <td>Respuesta 2</td>
+            <td>Respuesta 3</td>
+          </tr>
+          <tr>
+            <td>Respuesta 1</td>
+            <td>Respuesta 2</td>
+            <td>Respuesta 3</td>
+          </tr>
+          <tr>
+            <td>Respuesta 1</td>
+            <td>Respuesta 2</td>
+            <td>Respuesta 3</td>
+          </tr>
+          <tr>
+            <td>Respuesta 1</td>
+            <td>Respuesta 2</td>
+            <td>Respuesta 3</td>
+          </tr>
+          <tr>
+            <td>Respuesta 1</td>
+            <td>Respuesta 2</td>
+            <td>Respuesta 3</td>
+          </tr>
+          <tr>
+            <td>Respuesta 1</td>
+            <td>Respuesta 2</td>
+            <td>Respuesta 3</td>
+          </tr>
+          <tr>
+            <td>Respuesta 1</td>
+            <td>Respuesta 2</td>
+            <td>Respuesta 3</td>
+          </tr>
+          <tr>
+            <td>Respuesta 1</td>
+            <td>Respuesta 2</td>
+            <td>Respuesta 3</td>
+          </tr>
+          <tr>
+            <td>Respuesta 1</td>
+            <td>Respuesta 2</td>
+            <td>Respuesta 3</td>
+          </tr>
+          <tr>
+            <td>Respuesta 1</td>
+            <td>Respuesta 2</td>
+            <td>Respuesta 3</td>
+          </tr>
+        </tbody>
+      </table>
+    <footer>
+        <div class="footer-bs">
+            <div class="logo-bs"></div>
+            <div class="footer-img-bs"></div>
+        </div>
+    </footer>
+    <script src="config.js"></script>
+    <script>
+        var generateWordCloudUrl = config.backendUrl+"/generate-wordcloud";    
+
+        window.addEventListener('load', function() {
+            // Request to generate the word cloud and get the image URL
+            fetch(generateWordCloudUrl)
+                .then(response => response.json())
+                .then(data => {
+                    // Check if the URL is provided in the response
+                    if (data.wordcloud_image_url) {
+                        var wordcloudImage = document.getElementById('wordcloud_image');
+                        wordcloudImage.src = data.wordcloud_image_url;
+                    } else {
+                        throw new Error('Failed to retrieve the wordcloud image URL');
+                    }
+                })
+                .catch(error => {
+                    // Handle any errors
+                    console.error('Error:', error);
+                });
+        });
+    </script>
+</body>
+</html>

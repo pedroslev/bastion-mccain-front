@@ -320,3 +320,36 @@ h3 span {
         height: 6em;
     }
 }
+
+/*Tabla Momento*/
+
+.tabla {
+    position: absolute;
+    top: 30px;
+    width: 95%;
+    height: 80%; /* Ajuste para ocupar el 90% de la altura de la pantalla */
+    border: 2px solid #FEE000; /* Borde amarillo */
+    border-radius: 8px;
+    margin: 10px;
+    table-layout: fixed; /* Fija el ancho de las celdas */
+    border-collapse: separate; /* Asegura que los bordes sean separados para mantener el redondeo */
+    border-spacing: 0; /* Elimina el espacio entre las celdas */
+    overflow: hidden;
+  }
+
+  th {
+    padding: 20px;
+    text-align: center;
+    color: #fff;
+    background-color: #333;
+    font-weight: bold;
+    border-bottom:  2px solid #FEE000;
+  }
+  
+  td{
+    text-align: center;
+    color: #fff;
+    height: calc(150% / 100); /* Divide la altura disponible entre las filas (ajustar según la cantidad de filas) */
+  }
+
+  
