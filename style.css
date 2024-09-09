@@ -1,30 +1,74 @@
+/* Define Regular weight */
+@font-face {
+    font-family: 'Red Hat Display';
+    src: url('../assets/fonts/RedHatDisplay-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
+
+/* Define Black weight */
+@font-face {
+    font-family: 'Red Hat Display';
+    src: url('../assets/fonts/RedHatDisplay-Black.ttf') format('truetype');
+    font-weight: 900;
+    font-style: normal;
+}
+
 body {
     font-family:'Red Hat Display', sans-serif;
-    margin: 0;
+    margin-top: 100px;
     padding: 0;
     display: flex;
-    flex-direction: column;
     justify-content: center;
-    align-items: center;
-    min-height: 100vh;
+    align-items: start;
     background-color: #000; /* Dark background */
     color: #fff; /* White text */
 }
 
-.content {
-    text-align: center;
-    width: 90%;
-    max-width: 400px;
-    flex: 1;
+.container {
     display: flex;
     flex-direction: column;
-    padding-top: 10em;
+    align-items: center;
+    width: 100%;
+    max-width: 500px; /* Limit the container's width for responsiveness */
+    padding: 0 48px;
+    box-sizing: border-box;
 }
 
-.logo img {
-    width: 250px; /* Adjusted size for better visibility */
-    margin-top: 30px;
-    height: 8em;
+.logo {
+    width: 334px;
+    height: 117px;
+    flex-shrink: 0;
+    background-image: url(media/headerLogo.png);
+}
+
+.footer-img {
+        width: 267px;
+        height: 53px;
+        flex-shrink: 0;
+        background-image: url(media/footer.png);
+}
+
+.content-input {
+    text-align: center;
+    width: 100%;
+    margin-top: 162px;
+}
+
+.content-textarea {
+    text-align: center;
+    width: 100%;
+    margin-top: 100px;
+}
+
+.content-success {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 900px;
+    gap: 8px;
 }
 
 h1 {
@@ -32,14 +76,33 @@ h1 {
     font-family: 'Red Hat Display', sans-serif;
     font-size: 2.5em;
     margin-bottom: 20px;
+    text-align: left;
+}
+
+h2 {
+    color: #ffffff;
+    font-family: 'Red Hat Display', sans-serif;
+    font-size: 1.5em;
+    margin-bottom: 20px;
+    text-align: left;
 }
 
 h1 span {
     color: #FFD700; /* Yellow for emphasis */
 }
 
+p{
+    margin: 0px;
+    font-size: 12px;
+}
+
 .text-input-group {
     margin-bottom: 20px;
+}
+
+.text-area-group {
+    margin-bottom:20px;
+    margin-top:20px;
 }
 
 .text-input-group input {
@@ -53,8 +116,27 @@ h1 span {
     box-sizing: border-box;
 }
 
+.text-area-group textarea {
+    width: 100%;
+    padding: 15px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    background-color: #fff; /* White background for input */
+    color: #434043;
+    box-sizing: border-box;
+    font-family: Montserrat, sans-serif;
+}
+
+.text-area-group textarea::placeholder{
+    font-family: Montserrat, sans-serif;
+    color: #b2b0b0;
+    font-size:14px;
+}
+
 .text-input-group input::placeholder {
-    color: #999; /* Grey placeholder text */
+    font-family: Montserrat, sans-serif;
+    color: #b2b0b0; /* Grey placeholder text */
 }
 
 .buttons {
@@ -76,22 +158,6 @@ button.primary:hover {
     background-color: #555; /* Slightly lighter on hover */
 }
 
-button.secondary:hover {
-    background-color: #333; /* Darker on hover */
-}
-
-button.secondary {
-    background-color: transparent;
-    color: beige; /* White text */
-    width: 100%;
-    padding: 15px;
-    font-size: 16px;
-    margin-bottom: 10px;
-    border-color: beige;
-    cursor: pointer;
-    border-radius: 5px;
-}
-
 footer {
     width: 100%;
     text-align: center;
@@ -105,20 +171,126 @@ footer {
     display: flex;
     flex-direction: column;
     align-items: center;
-    
+    margin-bottom: 24px;
 }
 
 .footer-content img {
     margin-bottom: 5px;
 }
 
-footer p span {
+.footer-line {
+    width: 100%;
+    height: 10px; /* Height for the yellow line */
+    background-color: #FFD700; /* Yellow line */
+}
+
+#exit{
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    align-content: center;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    margin-bottom:24px;
+}
+
+/* big screen styles */
+h3 {
+    color: #ffffff;
+    font-family: 'Red Hat Display', sans-serif;
+    font-size: 7em;
+    text-align: center;
+    max-width: 1300px;
+    align-content: center;
+}
+
+h3 span {
     color: #FFD700; /* Yellow for emphasis */
 }
 
-.footer-line {
+.container-bigscreen{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     width: 100%;
-    height: 15px; /* Height for the yellow line */
-    bottom: 0px;
-    background-color: #FFD700; /* Yellow line */
+    padding: 0 48px;
+    box-sizing: border-box;
+    height: 80vh;
+    justify-content: center;
+}
+
+.logo-bs {
+    width: 198px;
+    height: 69px;
+    flex-shrink: 0;
+    background-image: url('media/headerLogo.png');
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+
+}
+
+.footer-img-bs {
+    width: 267px;
+    height: 53px;
+    flex-shrink: 0;
+    background-image: url('media/footer.png');
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+
+}
+
+.footer-bs {
+    display: flex;
+    flex-direction: row;
+    padding: 32px 48px;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 10px solid var(--McCain-Yellow, #FEE000);
+}
+
+.no-margin {
+    margin: 0px;
+}
+
+.image-container {
+    position: relative;
+    width: 100vw;  /* Full viewport width */
+    height: 100vh; /* Full viewport height */
+    overflow: hidden;  /* Ensure no overflow */
+}
+
+/* First image */
+.image1 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;  /* Cover full width of the viewport */
+    height: 100vh; /* Cover full height of the viewport */
+    object-fit: cover;  /* Ensure the image covers the container without distortion */
+    z-index: 1;  /* Set the stacking order */
+}
+
+/* Second image */
+.image2 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 80vh;
+    object-fit: cover;
+    z-index: 2;  /* Higher z-index means this image is above the first one */
+}
+
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+    h1 {
+        font-size: 2em;
+    }
+    .logo img {
+        height: 6em;
+    }
 }
