@@ -20,4 +20,32 @@
         </div>
     </footer>
 </body>
+<script src="config.js"></script>
+<script>
+    var auth = localStorage.getItem('auth');
+        if (!auth) {
+            window.location.href = '/index.html';
+        }
+        var load_endpoint = config.backendUrl + "/load";
+        // Fetch load data from server
+        fetch(load_endpoint)
+            .then(response => response.text())
+            .then(data => {
+                var cleanData = data.replace(/^"|"$/g, ''); 
+                localStorage.setItem('load', cleanData);
+                var loadValue = localStorage.getItem('load').trim(); 
+                console.log("Cleaned load data: ", loadValue);
+                if (loadValue === "WORDCLOUD") {
+                    window.location.href = "wordcloudview.html";
+                } else if (loadValue === "IA") {
+                    window.location.href = "iaview.html";
+                } else if(loadValue === "MOMENTO1"){
+                    window.location.href = "moment1view.html";
+                }
+            }).catch(error => {
+                console.error('Error fetching load data:', error);
+                alert('Ha ocurrido un error en el sistema, por favor contacte a su administrador');
+            });
+
+</script>
 </html>

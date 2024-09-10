@@ -184,6 +184,22 @@ button.primary:hover {
     background-color: #555; /* Slightly lighter on hover */
 }
 
+button.secondary {
+    width: 100%;
+    padding: 15px;
+    font-size: 16px;
+    border: 1px solid white;
+    border-radius: 5px;
+    background-color: transparent; /* Dark grey button */
+    color: white; /* White text */
+    cursor: pointer;
+    margin-bottom: 1em;
+}
+
+button.primary:hover {
+    background-color: #cfcaca; /* Slightly lighter on hover */
+}
+
 footer {
     width: 100%;
     text-align: center;

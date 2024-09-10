@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>McCain Compromiso</title>
+    <title>McCain Commitment</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&family=Red+Hat+Display:wght@400;700&display=swap" rel="stylesheet">
 </head>
@@ -15,18 +15,18 @@
             <form>
                 <div class="text-input-group">
                     <label>What do you like about them?</label>
-                    <input type="password" id="custom-text" name="custom-text" placeholder="Answer here...">
+                    <input type="text" id="respuesta1" name="custom-text" placeholder="Answer here...">
                 </div>
                 <div class="text-input-group">
                     <label>What are your concerns?</label>
-                    <input type="password" id="custom-text" name="custom-text" placeholder="Answer here...">
+                    <input type="text" id="respuesta2" name="respuesta2" placeholder="Answer here...">
                 </div>
                 <div class="text-input-group">
                     <label>What suggestions do you have to strengthen them?</label>
-                    <input type="password" id="custom-text" name="custom-text" placeholder="Answer here...">
+                    <input type="text" id="respuesta3" name="respuesta3" placeholder="Answer here...">
                 </div>
                 <div class="buttons">
-                    <button type="button" class="primary" id="ingresar">Send</button>
+                    <button type="button" class="primary" id="send">Send</button>
                 </div>
             </form>
         </div>
@@ -46,32 +46,67 @@
 </body>
 <script src="config.js"></script>
 <script>
-    /*
-    var pushtext_url = config.backendUrl+"/push-text";
+    
     //on page load
     if (!localStorage.getItem('auth')) {
         window.location.href = '/index.html';
+    }else{
+        console.log("Auth token found");
+            //fetch for correct page
+            var load_endpoint = config.backendUrl + "/load";
+            fetch(load_endpoint)
+                .then(response => response.text())
+                .then(data => {
+                    var cleanData = data.replace(/^"|"$/g, '');
+                    localStorage.setItem('load', cleanData);
+                    var loadValue = localStorage.getItem('load').trim();
+                    console.log("Cleaned load data: ", loadValue);
+                    if (loadValue === "NULL") {
+                        window.location.href = "null.html";
+                    } else if (loadValue === "IA") {
+                        window.location.href = "iaform.html";
+                    } else if (loadValue === "MOMENTO2") {
+                        window.location.href = "moment2.html";
+                    } else if (loadValue === "MOMENTO3") {
+                        window.location.href = "moment3.html";
+                    } else if (loadValue === "MOMENTO4") {
+                        window.location.href = "moment4.html";
+                    } else if (loadValue === "WORDCLOUD") {
+                        window.location.href = "wordcloud.html";
+                    }
+                }).catch(error => {
+                    console.error("Error:", error);
+                });
     }
     document.getElementById('exit').addEventListener('click', () => {
         localStorage.removeItem('auth');
         window.location.href = '/index.html';
     });
+
     document.getElementById('send').addEventListener('click', () => {
-        var respuesta = document.getElementById('respuesta').value;
+        var pushtext_url = config.backendUrl+"/moment1";
+        var respuesta1 = document.getElementById('respuesta1').value;
+        var respuesta2 = document.getElementById('respuesta2').value;
+        var respuesta3 = document.getElementById('respuesta3').value;
         fetch(pushtext_url, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({"text": respuesta})
+            body: JSON.stringify(
+                {
+                    "pregunta1": respuesta1,
+                    "pregunta2": respuesta2,
+                    "pregunta3": respuesta3,
+                })
         }).then(response => response.json())
         .then(data => {
             if (data.status) {
             // Image URL is valid
-            console.log("push text status:", data.status);
+            console.log("push momento 1 status:", data.status);
             window.location.href = '/success.html';
             } else {
-            console.log("Invalid text pushed");
+            console.error("Invalid momento1 pushed");
             alert("Error al enviar la respuesta. Por favor, inténtalo de nuevo.");
             }
         })
@@ -79,7 +114,5 @@
             console.error("Error:", error);
         });
     });
-    */
-
 </script>
 </html>

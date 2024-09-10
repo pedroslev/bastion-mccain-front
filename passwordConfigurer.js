@@ -14,7 +14,7 @@ function generateHashedPasswords() {
     const rawPasswords = {
         visualizer: 'viewer',
         admin: 'bastion',
-        user: 'user'
+        user: 'highway2030'
     };
 
     // salt for cryptographic shit

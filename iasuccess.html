@@ -13,8 +13,9 @@
         </div>
         <div class="content-success">
             <div style="margin-bottom: 20em;">
-            <img src="media/icon-park_success.png" alt="">
             <h2>Your response has been sent.</h2>
+            <img  style="height: 25em; border-radius: 10px;" id="iagenerated" src="media/iaplaceholder.png" alt="">
+            <p style="font-size: 1em;">The image you generated will be presented on the screen!</p>
         </div>
         </div>
     </div>
@@ -25,4 +26,19 @@
         <div class="footer-line"></div>
     </footer>
 </body>
+<script src="config.js"></script>
+<script>
+    //get url data
+    const urlParams = new URLSearchParams(window.location.search);
+    const imageurl = urlParams.get('imageurl');
+    //replace iagenerated image on dom
+    var iagenerated = document.getElementById('iagenerated');
+    iagenerated.src = imageurl;
+    
+    //timer of 2 minute to redirect to index again
+    setTimeout(function(){
+        window.location.href = '/index.html';
+    }, 120000);
+
+</script>
 </html>

@@ -18,79 +18,19 @@
         </thead>
         <tbody>
           <tr>
-            <td>Respuesta 1</td>
-            <td>Respuesta 2</td>
-            <td>Respuesta 3</td>
+            <td id="respuesta11"></td>
+            <td id="respuesta12"></td>
+            <td id="respuesta13"></td>
           </tr>
           <tr>
-            <td>Respuesta 1</td>
-            <td>Respuesta 2</td>
-            <td>Respuesta 3</td>
+            <td id="respuesta21"></td>
+            <td id="respuesta22"></td>
+            <td id="respuesta23"></td>
           </tr>
           <tr>
-            <td>Respuesta 1</td>
-            <td>Respuesta 2</td>
-            <td>Respuesta 3</td>
-          </tr>
-          <tr>
-            <td>Respuesta 1</td>
-            <td>Respuesta 2</td>
-            <td>Respuesta 3</td>
-          </tr>
-          <tr>
-            <td>Respuesta 1</td>
-            <td>Respuesta 2</td>
-            <td>Respuesta 3</td>
-          </tr>
-          <tr>
-            <td>Respuesta 1</td>
-            <td>Respuesta 2</td>
-            <td>Respuesta 3</td>
-          </tr>
-          <tr>
-            <td>Respuesta 1</td>
-            <td>Respuesta 2</td>
-            <td>Respuesta 3</td>
-          </tr>
-          <tr>
-            <td>Respuesta 1</td>
-            <td>Respuesta 2</td>
-            <td>Respuesta 3</td>
-          </tr>
-          <tr>
-            <td>Respuesta 1</td>
-            <td>Respuesta 2</td>
-            <td>Respuesta 3</td>
-          </tr>
-          <tr>
-            <td>Respuesta 1</td>
-            <td>Respuesta 2</td>
-            <td>Respuesta 3</td>
-          </tr>
-          <tr>
-            <td>Respuesta 1</td>
-            <td>Respuesta 2</td>
-            <td>Respuesta 3</td>
-          </tr>
-          <tr>
-            <td>Respuesta 1</td>
-            <td>Respuesta 2</td>
-            <td>Respuesta 3</td>
-          </tr>
-          <tr>
-            <td>Respuesta 1</td>
-            <td>Respuesta 2</td>
-            <td>Respuesta 3</td>
-          </tr>
-          <tr>
-            <td>Respuesta 1</td>
-            <td>Respuesta 2</td>
-            <td>Respuesta 3</td>
-          </tr>
-          <tr>
-            <td>Respuesta 1</td>
-            <td>Respuesta 2</td>
-            <td>Respuesta 3</td>
+            <td id="respuesta31"></td>
+            <td id="respuesta32"></td>
+            <td id="respuesta33"></td>
           </tr>
         </tbody>
       </table>
@@ -102,26 +42,61 @@
     </footer>
     <script src="config.js"></script>
     <script>
-        var generateWordCloudUrl = config.backendUrl+"/generate-wordcloud";    
+      var auth = localStorage.getItem('auth');
+      if (!auth) {
+          window.location.href = '/index.html';
+      }
+      var load_endpoint = config.backendUrl + "/load";
+      // Fetch load data from server
+      fetch(load_endpoint)
+          .then(response => response.text())
+          .then(data => {
+              var cleanData = data.replace(/^"|"$/g, ''); 
+              localStorage.setItem('load', cleanData);
+              var loadValue = localStorage.getItem('load').trim(); 
+              console.log("Cleaned load data: ", loadValue);
+              if (loadValue === "NULL") {
+                  window.location.href = "nullview.html";
+              } else if (loadValue === "IA") {
+                  window.location.href = "iaview.html";
+              } else if(loadValue === "WORDCLOUD"){
+                  window.location.href = "wordcloudview.html";
+              }
+          }).catch(error => {
+              console.error('Error fetching load data:', error);
+              alert('Ha ocurrido un error en el sistema, por favor contacte a su administrador');
+          });
 
-        window.addEventListener('load', function() {
-            // Request to generate the word cloud and get the image URL
-            fetch(generateWordCloudUrl)
-                .then(response => response.json())
-                .then(data => {
-                    // Check if the URL is provided in the response
-                    if (data.wordcloud_image_url) {
-                        var wordcloudImage = document.getElementById('wordcloud_image');
-                        wordcloudImage.src = data.wordcloud_image_url;
-                    } else {
-                        throw new Error('Failed to retrieve the wordcloud image URL');
-                    }
-                })
-                .catch(error => {
-                    // Handle any errors
-                    console.error('Error:', error);
-                });
-        });
+      //render frontend answers
+      var getAnswers = config.backendUrl+"/moment1";
+      window.addEventListener('load', function() {
+          // Request to generate the word cloud and get the image URL
+          fetch(getAnswers)
+              .then(response => response.json())
+              .then(data => {
+                  // Check if the URL is provided in the response
+                  if (data.respuestas) {
+                      console.log('Respuestas:', data.respuestas);
+                      document.getElementById('respuesta11').innerText = data.respuestas.respuesta1[0] || ""
+                      document.getElementById('respuesta21').innerText = data.respuestas.respuesta1[1] || ""
+                      document.getElementById('respuesta31').innerText = data.respuestas.respuesta1[2] || ""
+                      document.getElementById('respuesta12').innerText = data.respuestas.respuesta2[0] || ""
+                      document.getElementById('respuesta22').innerText = data.respuestas.respuesta2[1] || ""
+                      document.getElementById('respuesta32').innerText = data.respuestas.respuesta2[2] || ""
+                      document.getElementById('respuesta13').innerText = data.respuestas.respuesta3[0] || ""
+                      document.getElementById('respuesta23').innerText = data.respuestas.respuesta3[1] || ""
+                      document.getElementById('respuesta33').innerText = data.respuestas.respuesta3[2] || ""                     
+                  } else {
+                      throw new Error('Failed to retrieve the wordcloud image URL');
+                  }
+              })
+              .catch(error => {
+                  // Handle any errors
+                  console.error('Error:', error);
+              });
+      });
+
+
     </script>
 </body>
 </html>

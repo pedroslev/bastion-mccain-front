@@ -13,13 +13,13 @@
         <div class="logo">
         </div>
         <div class="content-input">
-            <h1>What is your commitment for 2030?<span>.</span></h1>
+            <h1>What is your commitment for 2030?</h1>
             <form>
                 <div class="text-area-group">
                     <textarea id="message" name="message" rows="4" cols="50" placeholder="Answer with a phrase here..."></textarea>
                 </div>
                 <div class="buttons">
-                    <button type="button" class="primary" id="ingresar">Send</button>
+                    <button type="button" class="primary" id="send">Send</button>
                 </div>
             </form>
         </div>
@@ -40,39 +40,70 @@
 </body>
 <script src="config.js"></script>
 <script>
-    
-    /* var genai_url = config.backendUrl + "/generate";
+     var genai_url = config.backendUrl + "/generate";
         //on page load
         if (!localStorage.getItem('auth')) {
             window.location.href = '/index.html';
+        }else{
+            console.log("Auth token found");
+            //fetch for correct page
+            var load_endpoint = config.backendUrl + "/load";
+            fetch(load_endpoint)
+                .then(response => response.text())
+                .then(data => {
+                    var cleanData = data.replace(/^"|"$/g, '');
+                    localStorage.setItem('load', cleanData);
+                    var loadValue = localStorage.getItem('load').trim();
+                    console.log("Cleaned load data: ", loadValue);
+                    if (loadValue === "NULL") {
+                        window.location.href = "null.html";
+                    } else if (loadValue === "MOMENTO1") {
+                        window.location.href = "moment1.html";
+                    } else if (loadValue === "MOMENTO2") {
+                        window.location.href = "moment2.html";
+                    } else if (loadValue === "MOMENTO3") {
+                        window.location.href = "moment3.html";
+                    } else if (loadValue === "MOMENTO4") {
+                        window.location.href = "moment4.html";
+                    } else if (loadValue === "WORDCLOUD") {
+                        window.location.href = "wordcloud.html";
+                    }
+                }).catch(error => {
+                    console.error("Error:", error);
+                });
         }
+
+        //salir
         document.getElementById('exit').addEventListener('click', () => {
             localStorage.removeItem('auth');
             window.location.href = '/index.html';
         });
-        document.getElementById('enviar').addEventListener('click', () => {
-            var respuesta = document.getElementById('respuesta').value;
+        //generate ia image
+        document.getElementById('send').addEventListener('click', () => {
+            var respuesta = document.getElementById('message').value;
+            // Disable send button
+            document.getElementById('send').disabled = true;
             fetch(genai_url, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ "text": respuesta })
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ "text": respuesta })
             }).then(response => response.json())
-                .then(data => {
-                    if (data.image_url) {
-                        // Image URL is valid
-                        console.log("Image URL generated:", data.image_url);
-                        window.location.href = '/success.html';
-                    } else {
-                        console.log("Invalid image URL");
-                        alert("Error al generar la imagen. Por favor, inténtalo de nuevo.");
-                    }
-                })
-                .catch(error => {
-                    console.error("Error:", error);
-                });
+            .then(data => {
+                if (data.image_url) {
+                // Image URL is valid
+                console.log("Image URL generated:", data.image_url);
+                window.location.href = '/iasuccess.html?imageurl='+data.image_url;
+                } else {
+                console.log("Invalid image URL");
+                alert("Error al generar la imagen. Por favor, inténtalo de nuevo.");
+                }
+            })
+            .catch(error => {
+                console.error("Error:", error);
+            })
         });
- */
+ 
 </script>
 </html>

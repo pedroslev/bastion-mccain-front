@@ -29,19 +29,19 @@
                     IA image generator
                 </label>
                 <label>
-                    <input type="radio" name="option" value="1moment">
+                    <input type="radio" name="option" value="MOMENTO1">
                     1st Moment
                 </label>
                 <label>
-                    <input type="radio" name="option" value="2moment">
+                    <input type="radio" name="option" value="MOMENTO2">
                     2nd Moment
                 </label>
                 <label>
-                    <input type="radio" name="option" value="3moment">
+                    <input type="radio" name="option" value="MOMENTO3">
                     3rd Moment
                 </label>
                 <label>
-                    <input type="radio" name="option" value="4moment">
+                    <input type="radio" name="option" value="MOMENTO4">
                     4th Moment
                 </label>
             </div>
@@ -70,30 +70,61 @@
 </body>
 <script src="config.js"></script>
 <script>
-     /*
     //on load check for auth and and adm
     if (!localStorage.getItem('auth') || !localStorage.getItem('adm')) {
         window.location.href = '/index.html';
+    }else{
+        //do a load fetch and check the corresponding dial to the moment
+        var load_endpoint = config.backendUrl + "/load";
+        fetch(load_endpoint)
+            .then(response => response.text())
+            .then(data => {
+                var cleanData = data.replace(/^"|"$/g, ''); 
+                localStorage.setItem('load', cleanData);
+                var loadValue = localStorage.getItem('load').trim(); 
+                console.log("Cleaned load data: ", loadValue);
+                if (loadValue === "NULL") {
+                    document.querySelector('input[name="option"][value="NULL"]').checked = true;
+                } else if (loadValue === "IA") {
+                    document.querySelector('input[name="option"][value="IA"]').checked = true;
+                } else if(loadValue === "WORDCLOUD"){
+                    document.querySelector('input[name="option"][value="WORDCLOUD"]').checked = true;
+                } else if(loadValue === "MOMENTO1"){
+                    document.querySelector('input[name="option"][value="MOMENTO1"]').checked = true;
+                } else if(loadValue === "MOMENTO2"){
+                    document.querySelector('input[name="option"][value="MOMENTO2"]').checked = true;
+                } else if(loadValue === "MOMENTO3"){
+                    document.querySelector('input[name="option"][value="MOMENTO3"]').checked = true;
+                } else if(loadValue === "MOMENTO4"){
+                    document.querySelector('input[name="option"][value="MOMENTO4"]').checked = true;
+                }
+            }).catch(error => {
+                console.error('Error fetching load data:', error);
+                alert('Ha ocurrido un error en el sistema, por favor contacte a su administrador');
+            });
     }
     var save_url = config.backendUrl+"/state";
     var restart_url = config.backendUrl+"/restart-wordcloud";
-    // listeners
+    // EXIT BUTTON
     document.getElementById('exit').addEventListener('click', () => {
         localStorage.removeItem('auth');
         localStorage.removeItem('adm');
         localStorage.removeItem('load');
         window.location.href = '/index.html';
     });
+
+    //RESTART WORDCLOUD
     document.getElementById('restartWordcloud').addEventListener('click', () => {
         fetch(restart_url, {
             method: 'GET'
         })
         .then(response => response.json())
         .then(data => {
-
             alert("Nube de palabras reiniciada");
         });
     });
+
+    //SAVE BUTTON
     document.getElementById('save').addEventListener('click', () => {
         var option = document.querySelector('input[name="option"]:checked').value;
         fetch(save_url, {
@@ -108,6 +139,5 @@
             window.location.href = '/bastionsuccess.html';
         });
     });
-    */
 </script>
 </html>

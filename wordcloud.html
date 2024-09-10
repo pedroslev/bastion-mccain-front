@@ -15,10 +15,10 @@
             <h1>What do you hope to get from our time together?<span>.</span></h1>
             <form>
                 <div class="text-input-group">
-                    <input type="password" id="custom-text" name="custom-text" placeholder="Answer here...">
+                    <input type="text" id="respuesta" name="respuesta" placeholder="Answer here...">
                 </div>
                 <div class="buttons">
-                    <button type="button" class="primary" id="ingresar">Send</button>
+                    <button type="button" class="primary" id="send">Send</button>
                 </div>
             </form>
         </div>
@@ -38,7 +38,33 @@
 </body>
 <script src="config.js"></script>
 <script>
-    /*
+    var load_endpoint = config.backendUrl + "/load";
+        // Fetch load data from server
+        fetch(load_endpoint)
+            .then(response => response.text())
+            .then(data => {
+                var cleanData = data.replace(/^"|"$/g, ''); 
+                localStorage.setItem('load', cleanData);
+                var loadValue = localStorage.getItem('load').trim(); 
+                console.log("Cleaned load data: ", loadValue);
+                if (loadValue === "NULL") {
+                    window.location.href = "null.html";
+                } else if (loadValue === "IA") {
+                    window.location.href = "iaform.html";
+                } else if(loadValue === "MOMENTO1"){
+                    window.location.href = "moment1.html";
+                } else if(loadValue === "MOMENTO2"){
+                    window.location.href = "moment2.html";
+                } else if(loadValue === "MOMENTO3"){
+                    window.location.href = "moment3.html";
+                } else if(loadValue === "MOMENTO4"){
+                    window.location.href = "moment4.html";
+                }
+            }).catch(error => {
+                console.error('Error fetching load data:', error);
+                alert('Ha ocurrido un error en el sistema, por favor contacte a su administrador');
+            });
+
     var pushtext_url = config.backendUrl+"/push-text";
     //on page load
     if (!localStorage.getItem('auth')) {
@@ -48,6 +74,7 @@
         localStorage.removeItem('auth');
         window.location.href = '/index.html';
     });
+
     document.getElementById('send').addEventListener('click', () => {
         var respuesta = document.getElementById('respuesta').value;
         fetch(pushtext_url, {
@@ -71,7 +98,6 @@
             console.error("Error:", error);
         });
     });
-    */
 
 </script>
 </html>

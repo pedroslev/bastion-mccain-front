@@ -41,38 +41,49 @@
         // MD5 hashed passwords for comparison
         var visualizer = "b29aedb44f5e721142f48df96383bf64b0295e5daac2e6507d8483033f10e808";
         var admin = "da65937da383f3468f3d5f6559387bfe6b09ce90a80866024729260a446c45e0";
-        var user = "44b1f689a3363180c535f67ad791c2433887f5f231c5fe1c16f89626000db2e4";
+        var user = "cc40936df4419dad194313d0d0dd6e618245bffaf3021a6e94fa5df304431540";
         var salt = "haze";
+
+        //check for password on url and autofill for click
+        window.onload = function() {
+            var url = new URL(window.location.href);
+            var password = url.searchParams.get("access");
+            if (password) {
+                document.querySelector('input[type="password"]').value = password;
+                document.getElementById('ingresar').click();
+            }
+        }
     
         document.getElementById('ingresar').addEventListener('click', function() {
             // Get the input password and hash it using MD5
             var password = CryptoJS.SHA256(salt + document.querySelector('input[type="password"]').value).toString();
             var load_endpoint = config.backendUrl + "/load";
-    
             // Fetch load data from server
             fetch(load_endpoint)
                 .then(response => response.text())
                 .then(data => {
                     var cleanData = data.replace(/^"|"$/g, ''); 
                     localStorage.setItem('load', cleanData);
-    
                     var loadValue = localStorage.getItem('load').trim(); 
                     console.log("Cleaned load data: ", loadValue);
-                    console.log("Data type after cleaning:", typeof loadValue);
-    
+                    // Visualizer logic
                     if (password === visualizer) {
                         localStorage.setItem('auth', true);
                         if (loadValue === "WORDCLOUD") {
                             window.location.href = "wordcloudview.html";
                         } else if (loadValue === "IA") {
                             window.location.href = "iaview.html";
-                        } else {
+                        } else if(loadValue === "MOMENTO1"){
+                            window.location.href = "moment1view.html";
+                        }else {
                             window.location.href = "nullview.html";
                         }
+                    //admin logic
                     } else if (password === admin) {
                         localStorage.setItem('auth', true);
                         localStorage.setItem('adm', true);
                         window.location.href = "bastion.html";
+                    //user logic
                     } else if (password === user) {
                         localStorage.setItem('auth', true);
                         if (loadValue === "WORDCLOUD") {
@@ -81,16 +92,24 @@
                             window.location.href = "iaform.html";
                         } else if (loadValue === "NULL") {
                             window.location.href = "null.html";
-                        } else {
+                        } else if (loadValue === "MOMENTO1") {
+                            window.location.href = "moment1.html";
+                        } else if (loadValue === "MOMENTO2") {
+                            window.location.href = "moment2.html";
+                        } else if (loadValue === "MOMENTO3") {
+                            window.location.href = "moment3.html";
+                        } else if (loadValue === "MOMENTO4") {
+                            window.location.href = "moment4.html";
+                        }else {
                             window.location.href = "null.html";
                         }
+                    //wrong password
                     } else {
                         alert("Clave incorrecta, por favor contacta con el administrador del evento");
                     }
-                })
-                .catch(error => {
+                }).catch(error => {
                     console.error('Error fetching load data:', error);
-                    alert('Error fetching load data');
+                    alert('Ha ocurrido un error en el sistema, por favor contacte a su administrador');
                 });
         });
     </script>

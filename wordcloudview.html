@@ -10,7 +10,7 @@
 <body class="no-margin">
     <div class="container-bigscreen">
 
-        <img src="media/wordcloud.png" alt="">
+        <img style="height: 93%;" id="wordcloud_image">
     
     </div>
     <footer>
@@ -21,7 +21,7 @@
     </footer>
     <script src="config.js"></script>
     <script>
-        var generateWordCloudUrl = config.backendUrl+"/generate-wordcloud";    
+        var generateWordCloudUrl = config.backendUrl+"/generate-wordcloud";
 
         window.addEventListener('load', function() {
             // Request to generate the word cloud and get the image URL
@@ -30,6 +30,7 @@
                 .then(data => {
                     // Check if the URL is provided in the response
                     if (data.wordcloud_image_url) {
+                        console.log('Wordcloud image URL:', data.wordcloud_image_url);
                         var wordcloudImage = document.getElementById('wordcloud_image');
                         wordcloudImage.src = data.wordcloud_image_url;
                     } else {
@@ -41,6 +42,32 @@
                     console.error('Error:', error);
                 });
         });
+
+        var auth = localStorage.getItem('auth');
+        if (!auth) {
+            window.location.href = '/index.html';
+        }
+        var load_endpoint = config.backendUrl + "/load";
+        // Fetch load data from server
+        fetch(load_endpoint)
+            .then(response => response.text())
+            .then(data => {
+                var cleanData = data.replace(/^"|"$/g, ''); 
+                localStorage.setItem('load', cleanData);
+                var loadValue = localStorage.getItem('load').trim(); 
+                console.log("Cleaned load data: ", loadValue);
+                if (loadValue === "NULL") {
+                    window.location.href = "nullview.html";
+                } else if (loadValue === "IA") {
+                    window.location.href = "iaview.html";
+                } else if(loadValue === "MOMENTO1"){
+                    window.location.href = "moment1view.html";
+                }
+            }).catch(error => {
+                console.error('Error fetching load data:', error);
+                alert('Ha ocurrido un error en el sistema, por favor contacte a su administrador');
+            });
+
     </script>
 </body>
 </html>
