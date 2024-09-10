@@ -20,6 +20,7 @@
                 </div>
                 <div class="buttons">
                     <button type="button" class="primary" id="send">Send</button>
+                    <span class="spinner" id="spinner" style="display:none;"></span>
                 </div>
             </form>
         </div>
@@ -81,8 +82,11 @@
         //generate ia image
         document.getElementById('send').addEventListener('click', () => {
             var respuesta = document.getElementById('message').value;
+            document.getElementById('spinner').style.display = 'inline-block';
             // Disable send button
             document.getElementById('send').disabled = true;
+            document.getElementById('send').style.display = 'none';
+            /*
             fetch(genai_url, {
             method: 'POST',
             headers: {
@@ -102,8 +106,9 @@
             })
             .catch(error => {
                 console.error("Error:", error);
-            })
+            })*/
         });
+        
  
 </script>
 </html>

@@ -368,4 +368,24 @@ h3 span {
     height: calc(150% / 100); /* Divide la altura disponible entre las filas (ajustar según la cantidad de filas) */
   }
 
-  
+  /* Spinner styling */
+.spinner {
+    border: 4px solid #333;
+    border-left-color: #ffffff;
+    border-radius: 50%;
+    width: 16px;
+    height: 16px;
+    display: inline-block;
+    animation: spin 1s linear infinite;
+    margin-right: 5px; /* Add space between spinner and button text */
+}
+
+/* Spinner animation */
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
