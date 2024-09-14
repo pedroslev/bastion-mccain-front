@@ -30,19 +30,23 @@
                 </label>
                 <label>
                     <input type="radio" name="option" value="MOMENTO1">
-                    1st Moment
+                     LATAM Top Initiatives & Fundamental Principles
                 </label>
                 <label>
                     <input type="radio" name="option" value="MOMENTO2">
-                    2nd Moment
+                    Share your single biggest takeaway
                 </label>
                 <label>
                     <input type="radio" name="option" value="MOMENTO3">
-                    3rd Moment
+                    What are your Highlights from our B/O Sessions
                 </label>
                 <label>
                     <input type="radio" name="option" value="MOMENTO4">
-                    4th Moment
+                    Share your feedback about summit
+                </label>
+                <label>
+                    <input type="radio" name="option" value="TRAINING">
+                    Training 19/09
                 </label>
             </div>
             <div class="buttons">
@@ -97,6 +101,8 @@
                     document.querySelector('input[name="option"][value="MOMENTO3"]').checked = true;
                 } else if(loadValue === "MOMENTO4"){
                     document.querySelector('input[name="option"][value="MOMENTO4"]').checked = true;
+                } else if(loadValue === "TRAINING1"){
+                    document.querySelector('input[name="option"][value="TRAINING"]').checked = true;
                 }
             }).catch(error => {
                 console.error('Error fetching load data:', error);

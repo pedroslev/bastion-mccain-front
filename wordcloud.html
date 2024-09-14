@@ -15,7 +15,13 @@
             <h1>What do you hope to get from our time together?<span>.</span></h1>
             <form>
                 <div class="text-input-group">
-                    <input type="text" id="respuesta" name="respuesta" placeholder="Answer here...">
+                    <input type="text" id="respuesta1" name="respuesta1" placeholder="Answer here one word only">
+                </div>
+                <div class="text-input-group">
+                    <input type="text" id="respuesta2" name="respuesta2" placeholder="Answer here one word only">
+                </div>
+                <div class="text-input-group">
+                    <input type="text" id="respuesta3" name="respuesta3" placeholder="Answer here one word only">
                 </div>
                 <div class="buttons">
                     <button type="button" class="primary" id="send">Send</button>
@@ -76,28 +82,66 @@
     });
 
     document.getElementById('send').addEventListener('click', () => {
-        var respuesta = document.getElementById('respuesta').value;
-        fetch(pushtext_url, {
+    // Retrieve and trim the values from input fields
+    var respuesta1 = document.getElementById('respuesta1').value.trim();
+    var respuesta2 = document.getElementById('respuesta2').value.trim();
+    var respuesta3 = document.getElementById('respuesta3').value.trim();
+
+    // Store responses in an array
+    var respuestas = [respuesta1, respuesta2, respuesta3];
+
+    // Validate that each response is only one word
+    for (var i = 0; i < respuestas.length; i++) {
+        if (respuestas[i] === "") {
+            alert('Please fill in all the fields.');
+            return;
+        }
+        if (respuestas[i].split(/\s+/).length > 1) {
+            alert('Please enter only one word in each input.');
+            return;
+        }
+    }
+
+    // Function to send each response to the endpoint
+    function sendResponse(respuesta) {
+        return fetch(pushtext_url, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({"text": respuesta})
-        }).then(response => response.json())
-        .then(data => {
-            if (data.status) {
-            // Image URL is valid
-            console.log("push text status:", data.status);
+        }).then(response => response.json());
+    }
+
+    // Send the responses sequentially
+    sendResponse(respuestas[0])
+    .then(data1 => {
+        if (data1.status) {
+            return sendResponse(respuestas[1]);
+        } else {
+            throw new Error('Error sending first response');
+        }
+    })
+    .then(data2 => {
+        if (data2.status) {
+            return sendResponse(respuestas[2]);
+        } else {
+            throw new Error('Error sending second response');
+        }
+    })
+    .then(data3 => {
+        if (data3.status) {
+            // All responses were sent successfully
             window.location.href = '/success.html';
-            } else {
-            console.log("Invalid text pushed");
-            alert("Error al enviar la respuesta. Por favor, inténtalo de nuevo.");
-            }
-        })
-        .catch(error => {
-            console.error("Error:", error);
-        });
+        } else {
+            throw new Error('Error sending third response');
+        }
+    })
+    .catch(error => {
+        console.error("Error:", error);
+        alert("An error occurred while sending your responses. Please try again.");
     });
+});
 
 </script>
 </html>

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Yesterdays Takeway</title>
+    <title>Commitment for 2030</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&family=Red+Hat+Display:wght@400;700&display=swap" rel="stylesheet">
 </head>
@@ -13,21 +13,24 @@
         <div class="logo">
         </div>
         <div class="content-input">
-            <h2>Share your single biggest takeaway from yesterday<span>?</span></h2>
+            <h1 style="margin: 0px;">Questions<span>.</span></h1>
             <form>
-                <div class="text-area-group">
-                    <textarea id="message" name="message" rows="4" cols="50" placeholder="Answer with a phrase here, ten words maximum"></textarea>
+                <div class="text-input-group">
+                    <label>What did you like the most?</label>
+                    <div class="text-area-group">
+                        <textarea id="message1" name="message1" rows="4" cols="50" placeholder="Answer with a phrase here..."></textarea>
+                    </div>
+                </div>
+                <div class="text-input-group">
+                    <label>What did you like the less?</label>
+                    <div class="text-area-group">
+                        <textarea id="message2" name="message2" rows="4" cols="50" placeholder="Answer with a phrase here..."></textarea>
+                    </div>
                 </div>
                 <div class="buttons">
-                    <button type="button" class="primary" id="send">Send</button>
+                    <button type="button" class="primary" id="save">Save</button>
                 </div>
             </form>
-        </div>
-        <div class="content-input">
-            <a id="exit">
-                <img src="media/exit.png" alt="Exit Icon">
-                <p>Exit</p>
-            </a>
         </div>
     </div>
         <footer>
@@ -40,8 +43,8 @@
 </body>
 <script src="config.js"></script>
 <script>
-    //on page load
-    if (!localStorage.getItem('auth')) {
+     //on page load
+     if (!localStorage.getItem('auth')) {
         window.location.href = '/index.html';
     }else{
         console.log("Auth token found");
@@ -60,12 +63,14 @@
                         window.location.href = "iaform.html";
                     } else if (loadValue === "MOMENTO1") {
                         window.location.href = "moment1.html";
+                    } else if (loadValue === "MOMENTO2") {
+                        window.location.href = "moment2.html";
                     } else if (loadValue === "MOMENTO3") {
                         window.location.href = "moment3.html";
-                    } else if (loadValue === "MOMENTO4") {
-                        window.location.href = "moment4.html";
                     } else if (loadValue === "WORDCLOUD") {
                         window.location.href = "wordcloud.html";
+                    }else if (loadValue === "TRAINING") {
+                        window.location.href = "training.html";
                     }
                 }).catch(error => {
                     console.error("Error:", error);
@@ -76,24 +81,11 @@
         window.location.href = '/index.html';
     });
 
-    document.getElementById('send').addEventListener('click', () => {
-        var pushtext_url = config.backendUrl+"/moment2";
-        var respuesta = document.getElementById('message').value;
-            // Check if the input is empty
-        if (respuesta === "") {
-            alert('Please enter your answer.');
-            return;
-        }
-
-        // Split the input text into words and count them
-        var wordCount = respuesta.split(/\s+/).length;
-
-        // Validate that the answer has a maximum of 10 words
-        if (wordCount > 10) {
-            alert('Please limit your answer to 10 words maximum.');
-            return; // Stop the function if validation fails
-        }
-        
+    document.getElementById('save').addEventListener('click', () => {
+        var pushtext_url = config.backendUrl+"/moment4";
+        var respuesta1 = document.getElementById('message1').value;
+        var respuesta2 = document.getElementById('message2').value;
+        //TODO terminar momento 4 logica revisar todas las paginas nuevamente.
         fetch(pushtext_url, {
             method: 'POST',
             headers: {
@@ -104,10 +96,10 @@
         .then(data => {
             if (data.status) {
             // Image URL is valid
-            console.log("push momento 2 status:", data.status);
+            console.log("push momento 4 status:", data.status);
             window.location.href = '/success.html';
             } else {
-            console.error("Invalid momento2 pushed");
+            console.error("Invalid momento4 pushed");
             alert("Error al enviar la respuesta. Por favor, inténtalo de nuevo.");
             }
         })

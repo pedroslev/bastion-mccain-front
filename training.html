@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Administrador - McCain</title>
+        <link rel="stylesheet" href="style.css">
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&family=Red+Hat+Display:wght@400;700&display=swap" rel="stylesheet">
+    </head>
+    
+<body>
+    <div class="container">
+    <div class="logo">
+    </div>
+    
+    <div class="content-input">
+        <h1>Questions<span>.</span></h1>    
+        <p style="font-size: 0.8em; padding-bottom: 1em;">Where 1 is "poor" and 5 is "great", rate the following questions<p>    
+        <p style="font-size: 1em;">How would you rate the Awards Event?</p>
+            <div class="options">
+                    <label><input type="radio" name="awards_event" value="1"> 1</label>
+                    <label><input type="radio" name="awards_event" value="2"> 2</label>
+                    <label><input type="radio" name="awards_event" value="3"> 3</label>
+                    <label><input type="radio" name="awards_event" value="4"> 4</label>
+                    <label><input type="radio" name="awards_event" value="5"> 5</label>
+            </div>
+        <p style="font-size: 1em; padding-top: 1em;">How would you rate the Training on Wednesday?</p>
+            <div class="options">
+                    <label><input type="radio" name="training_wednesday" value="1"> 1</label>
+                    <label><input type="radio" name="training_wednesday" value="2"> 2</label>
+                    <label><input type="radio" name="training_wednesday" value="3"> 3</label>
+                    <label><input type="radio" name="training_wednesday" value="4"> 4</label>
+                    <label><input type="radio" name="training_wednesday" value="5"> 5</label>
+            </div>
+        <p style="font-size: 1em; padding-top: 1em;">How would you rate the Training on Thursday?</p>
+            <div class="options">
+                <label><input type="radio" name="training_thursday" value="1"> 1</label>
+                <label><input type="radio" name="training_thursday" value="2"> 2</label>
+                <label><input type="radio" name="training_thursday" value="3"> 3</label>
+                <label><input type="radio" name="training_thursday" value="4"> 4</label>
+                <label><input type="radio" name="training_thursday" value="5"> 5</label>
+            </div>
+            <div class="buttons">
+                <button type="submit" id="next" class="primary">Next</button>
+            </div>
+        </div>
+</div>
+
+    <footer>
+        <div class="footer-content">
+            <img src="media/footer.png" alt="McCain Logo">
+        </div>
+    <div class="footer-line"></div>
+    </footer>
+
+</body>
+<script src="config.js"></script>
+<script>
+    //on load check for auth and and adm
+    if (!localStorage.getItem('auth') || !localStorage.getItem('adm')) {
+        window.location.href = '/index.html';
+    }else{
+        //do a load fetch and check the corresponding dial to the moment
+        var load_endpoint = config.backendUrl + "/load";
+        fetch(load_endpoint)
+            .then(response => response.text())
+            .then(data => {
+                var cleanData = data.replace(/^"|"$/g, ''); 
+                localStorage.setItem('load', cleanData);
+                var loadValue = localStorage.getItem('load').trim(); 
+                console.log("Cleaned load data: ", loadValue);
+                if (loadValue === "NULL") {
+                    window.location.href = "null.html";
+                } else if (loadValue === "IA") {
+                    window.location.href = "iaform.html";
+                } else if(loadValue === "WORDCLOUD"){
+                    window.location.href = "wordcloud.html";
+                } else if(loadValue === "MOMENTO1"){
+                    window.location.href = "moment1.html";
+                } else if(loadValue === "MOMENTO2"){
+                    window.location.href = "moment2.html";
+                } else if(loadValue === "MOMENTO3"){
+                    window.location.href = "moment3.html";
+                } else if(loadValue === "MOMENTO4"){
+                    window.location.href = "moment4.html";
+                }
+            }).catch(error => {
+                console.error('Error fetching load data:', error);
+                alert('Ha ocurrido un error en el sistema, por favor contacte a su administrador');
+            });
+    }
+   
+
+    //NEXT BUTTON
+    document.getElementById('next').addEventListener('click', () => {
+        var awardsEventRating = document.querySelector('input[name="awards_event"]:checked');
+        var trainingWednesdayRating = document.querySelector('input[name="training_wednesday"]:checked');
+        var trainingThursdayRating = document.querySelector('input[name="training_thursday"]:checked');
+        if (!awardsEventRating || !trainingWednesdayRating || !trainingThursdayRating) {
+            alert('Please answer all the rating questions.');
+            return;
+        }
+        //here i will need to get the values of the questions as int
+        var values = {
+            "Awards Event": parseInt(awardsEventRating.value),
+            "Training Wednesday": parseInt(trainingWednesdayRating.value),
+            "Training Thursday": parseInt(trainingThursdayRating.value),
+            "question1": "",
+            "question2": "",
+        }
+        localStorage.setItem('training', JSON.stringify(values));
+        window.location.href = "training2.html";
+    });
+</script>
+</html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Administrador - McCain</title>
+        <link rel="stylesheet" href="style.css">
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&family=Red+Hat+Display:wght@400;700&display=swap" rel="stylesheet">
+    </head>
+    
+<body>
+    <div class="container">
+    <div class="logo">
+    </div>
+    <div class="content-input">
+            <div class="text-input-group">
+                <label>What did you like about the training?</label>
+                <div class="text-area-group">
+                    <textarea id="message1" name="message" rows="4" cols="50" placeholder="Answer with a phrase here..."></textarea>
+                </div>
+            </div>
+            <div class="text-input-group">
+                <label>What did you like less in the training?</label>
+                <div class="text-area-group">
+                    <textarea id="message2" name="message" rows="4" cols="50" placeholder="Answer with a phrase here..."></textarea>
+                </div>
+            </div>
+            <div class="buttons">
+                <button type="submit" id="send" class="primary">Send</button>
+            </div>
+    </div>
+</div>
+    <footer>
+        <div class="footer-content">
+            <img src="media/footer.png" alt="McCain Logo">
+        </div>
+    <div class="footer-line"></div>
+    </footer>
+
+</body>
+<script src="config.js"></script>
+<script>
+    //on load check for auth and and adm
+    if (!localStorage.getItem('auth') || !localStorage.getItem('adm')) {
+        window.location.href = '/index.html';
+    }else{
+        //do a load fetch and check the corresponding dial to the moment
+        var load_endpoint = config.backendUrl + "/load";
+        fetch(load_endpoint)
+            .then(response => response.text())
+            .then(data => {
+                var cleanData = data.replace(/^"|"$/g, ''); 
+                localStorage.setItem('load', cleanData);
+                var loadValue = localStorage.getItem('load').trim(); 
+                console.log("Cleaned load data: ", loadValue);
+                if (loadValue === "NULL") {
+                    window.location.href = "null.html";
+                } else if (loadValue === "IA") {
+                    window.location.href = "iaform.html";
+                } else if(loadValue === "WORDCLOUD"){
+                    window.location.href = "wordcloud.html";
+                } else if(loadValue === "MOMENTO1"){
+                    window.location.href = "moment1.html";
+                } else if(loadValue === "MOMENTO2"){
+                    window.location.href = "moment2.html";
+                } else if(loadValue === "MOMENTO3"){
+                    window.location.href = "moment3.html";
+                } else if(loadValue === "MOMENTO4"){
+                    window.location.href = "moment4.html";
+                }
+            }).catch(error => {
+                console.error('Error fetching load data:', error);
+                alert('Ha ocurrido un error en el sistema, por favor contacte a su administrador');
+            });
+    }
+   
+
+    //SAVE BUTTON
+    document.getElementById('send').addEventListener('click', () => {
+        var save_url = config.backendUrl+"/training";
+        //here i need to get the localstorage
+        var values = JSON.parse(localStorage.getItem('training'));
+        values["question1"] = document.getElementById('message1').value;
+        values["question2"] = document.getElementById('message2').value;
+        fetch(save_url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(values)
+        })
+        .then(response => response.json())
+        .then(data => {
+            window.location.href = '/success.html';
+        });
+    });
+</script>
+</html>

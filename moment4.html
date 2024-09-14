@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Commitment for 2030</title>
+    <title>Summit feedback</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&family=Red+Hat+Display:wght@400;700&display=swap" rel="stylesheet">
 </head>
@@ -13,21 +13,77 @@
         <div class="logo">
         </div>
         <div class="content-input">
-            <h2>Share your feedback about our 1st LATAM Strategy Summit</h2>
+            <h1 style="margin: 0px;">Questions<span>.</span></h1>
             <form>
-                <div class="text-area-group">
-                    <textarea id="message" name="message" rows="4" cols="50" placeholder="Answer with a phrase here..."></textarea>
-                </div>
+                <p style="font-size: 0.8em; padding-bottom: 1em;">Where 1 is "poor" and 5 is "great", rate the following questions<p>    
+                <p style="font-size: 1em;">The content of the summit</p>
+                    <div class="options">
+                            <label><input type="radio" name="content" value="1"> 1</label>
+                            <label><input type="radio" name="content" value="2"> 2</label>
+                            <label><input type="radio" name="content" value="3"> 3</label>
+                            <label><input type="radio" name="content" value="4"> 4</label>
+                            <label><input type="radio" name="content" value="5"> 5</label>
+                    </div>
+                <p style="font-size: 1em; padding-top: 0.3em;">1st Day presentations</p>
+                    <div class="options">
+                            <label><input type="radio" name="presentation1" value="1"> 1</label>
+                            <label><input type="radio" name="presentation1" value="2"> 2</label>
+                            <label><input type="radio" name="presentation1" value="3"> 3</label>
+                            <label><input type="radio" name="presentation1" value="4"> 4</label>
+                            <label><input type="radio" name="presentation1" value="5"> 5</label>
+                    </div>
+                <p style="font-size: 1em; padding-top: 0.3em;">1st Day Speaker</p>
+                    <div class="options">
+                        <label><input type="radio" name="1speaker" value="1"> 1</label>
+                        <label><input type="radio" name="1speaker" value="2"> 2</label>
+                        <label><input type="radio" name="1speaker" value="3"> 3</label>
+                        <label><input type="radio" name="1speaker" value="4"> 4</label>
+                        <label><input type="radio" name="1speaker" value="5"> 5</label>
+                    </div>
+                <p style="font-size: 1em; padding-top: 0.3em;">2nd Day Speaker</p>
+                    <div class="options">
+                        <label><input type="radio" name="2speaker" value="1"> 1</label>
+                        <label><input type="radio" name="2speaker" value="2"> 2</label>
+                        <label><input type="radio" name="2speaker" value="3"> 3</label>
+                        <label><input type="radio" name="2speaker" value="4"> 4</label>
+                        <label><input type="radio" name="2speaker" value="5"> 5</label>
+                    </div>
+                <p style="font-size: 1em; padding-top: 0.3em;">Location: Hotel and Ballroom</p>
+                    <div class="options">
+                        <label><input type="radio" name="location" value="1"> 1</label>
+                        <label><input type="radio" name="location" value="2"> 2</label>
+                        <label><input type="radio" name="location" value="3"> 3</label>
+                        <label><input type="radio" name="location" value="4"> 4</label>
+                        <label><input type="radio" name="location" value="5"> 5</label>
+                    </div>
+                <p style="font-size: 1em; padding-top: 0.3em;">Food and dinners</p>
+                    <div class="options">
+                        <label><input type="radio" name="food" value="1"> 1</label>
+                        <label><input type="radio" name="food" value="2"> 2</label>
+                        <label><input type="radio" name="food" value="3"> 3</label>
+                        <label><input type="radio" name="food" value="4"> 4</label>
+                        <label><input type="radio" name="food" value="5"> 5</label>
+                    </div>
+                <p style="font-size: 1em; padding-top: 0.3em;">Duration of the event</p>
+                    <div class="options">
+                        <label><input type="radio" name="duration" value="1"> 1</label>
+                        <label><input type="radio" name="duration" value="2"> 2</label>
+                        <label><input type="radio" name="duration" value="3"> 3</label>
+                        <label><input type="radio" name="duration" value="4"> 4</label>
+                        <label><input type="radio" name="duration" value="5"> 5</label>
+                    </div>
+                <p style="font-size: 1em; padding-top: 0.3em;">Overall Strategy Summit</p>
+                    <div class="options">
+                        <label><input type="radio" name="summit" value="1"> 1</label>
+                        <label><input type="radio" name="summit" value="2"> 2</label>
+                        <label><input type="radio" name="summit" value="3"> 3</label>
+                        <label><input type="radio" name="summit" value="4"> 4</label>
+                        <label><input type="radio" name="summit" value="5"> 5</label>
+                    </div>
                 <div class="buttons">
-                    <button type="button" class="primary" id="send">Send</button>
+                    <button type="button" class="primary" id="next">Next</button>
                 </div>
             </form>
-        </div>
-        <div class="content-input">
-            <a id="exit">
-                <img src="media/exit.png" alt="Exit Icon">
-                <p>Exit</p>
-            </a>
         </div>
     </div>
         <footer>
@@ -66,39 +122,45 @@
                         window.location.href = "moment3.html";
                     } else if (loadValue === "WORDCLOUD") {
                         window.location.href = "wordcloud.html";
+                    }else if (loadValue === "TRAINING") {
+                        window.location.href = "training.html";
                     }
                 }).catch(error => {
                     console.error("Error:", error);
                 });
     }
-    document.getElementById('exit').addEventListener('click', () => {
-        localStorage.removeItem('auth');
-        window.location.href = '/index.html';
-    });
 
-    document.getElementById('send').addEventListener('click', () => {
-        var pushtext_url = config.backendUrl+"/moment4";
-        var respuesta = document.getElementById('message').value;
-        fetch(pushtext_url, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({"text": respuesta})
-        }).then(response => response.json())
-        .then(data => {
-            if (data.status) {
-            // Image URL is valid
-            console.log("push momento 4 status:", data.status);
-            window.location.href = '/success.html';
-            } else {
-            console.error("Invalid momento4 pushed");
-            alert("Error al enviar la respuesta. Por favor, inténtalo de nuevo.");
-            }
-        })
-        .catch(error => {
-            console.error("Error:", error);
-        });
+    document.getElementById('next').addEventListener('click', () => {
+        //get all the values
+        var content = document.querySelector('input[name="content"]:checked');
+        var presentation1 = document.querySelector('input[name="presentation1"]:checked');
+        var speaker1 = document.querySelector('input[name="1speaker"]:checked');
+        var speaker2 = document.querySelector('input[name="2speaker"]:checked');
+        var location = document.querySelector('input[name="location"]:checked');
+        var food = document.querySelector('input[name="food"]:checked');
+        var duration = document.querySelector('input[name="duration"]:checked');
+        var summit = document.querySelector('input[name="summit"]:checked');
+        //check if they are answered
+        if (!content || !presentation1 || !speaker1 || !speaker2 || !location || !food || !duration || !summit) {
+            alert("Please answer all the questions");
+            return;
+        }
+        //here i will need to get the values of the questions as int
+        var values = {
+            content: parseInt(content.value),
+            presentation1: parseInt(presentation1.value),
+            speaker1: parseInt(speaker1.value),
+            speaker2: parseInt(speaker2.value),
+            location: parseInt(location.value),
+            food: parseInt(food.value),
+            duration: parseInt(duration.value),
+            summit: parseInt(summit.value),
+            question1: "",
+            question2: ""
+        }
+        localStorage.setItem('moment4', JSON.stringify(values));
+
+        window.location.href = "moment4next.html";
     });
 </script>
 </html>
