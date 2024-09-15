@@ -13,7 +13,7 @@
         </div>
         <div class="content-input">
             <h1>Access token<span>.</span></h1>
-            <form>
+            <form id="login-form">
                 <div class="text-input-group">
                     <input type="password" id="custom-text" name="custom-text" placeholder="Enter your access token here">
                 </div>
@@ -53,6 +53,12 @@
                 document.getElementById('ingresar').click();
             }
         }
+
+        // Add this code after your existing scripts
+        document.getElementById('login-form').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent form submission
+            document.getElementById('ingresar').click(); // Trigger your login logic
+        });
     
         document.getElementById('ingresar').addEventListener('click', function() {
             // Get the input password and hash it using MD5

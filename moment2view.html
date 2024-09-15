@@ -3,34 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>McCain 2030</title>
+    <title>Yesterdays Takeway</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&family=Red+Hat+Display:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <table class="tabla">
+    <table class="tabla-moment2">
         <thead>
           <tr>
-            <th>What do you like about them?</th>
-            <th>What are your concerns?</th>
-            <th>What suggestions do you have to strengthen them?</th>
+            <th style="width: 100%;">Biggest takeaway from yesterday</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td id="respuesta11"></td>
-            <td id="respuesta12"></td>
-            <td id="respuesta13"></td>
-          </tr>
-          <tr>
-            <td id="respuesta21"></td>
-            <td id="respuesta22"></td>
-            <td id="respuesta23"></td>
-          </tr>
-          <tr>
-            <td id="respuesta31"></td>
-            <td id="respuesta32"></td>
-            <td id="respuesta33"></td>
+            <td style="width: 100%;" id="respuesta1"></td>
+            <td style="width: 100%;" id="respuesta2"></td>
+            <td style="width: 100%;" id="respuesta3"></td>
+            <td style="width: 100%;" id="respuesta4"></td>
           </tr>
         </tbody>
       </table>
@@ -61,8 +50,8 @@
                   window.location.href = "iaview.html";
               } else if(loadValue === "WORDCLOUD"){
                   window.location.href = "wordcloudview.html";
-              } else if(loadValue === "MOMENTO2"){
-                  window.location.href = "moment2view.html";
+              } else if(loadValue === "MOMENTO1"){
+                  window.location.href = "moment1view.html";
               }
           }).catch(error => {
               console.error('Error fetching load data:', error);
@@ -70,7 +59,7 @@
           });
 
       //render frontend answers
-      var getAnswers = config.backendUrl+"/moment1";
+      var getAnswers = config.backendUrl+"/moment2";
       window.addEventListener('load', function() {
           // Request to generate the word cloud and get the image URL
           fetch(getAnswers)
@@ -78,16 +67,11 @@
               .then(data => {
                   // Check if the URL is provided in the response
                   if (data.respuestas) {
-                      console.log('Respuestas:', data.respuestas);
-                      document.getElementById('respuesta11').innerText = data.respuestas.respuesta1[0] || ""
-                      document.getElementById('respuesta21').innerText = data.respuestas.respuesta1[1] || ""
-                      document.getElementById('respuesta31').innerText = data.respuestas.respuesta1[2] || ""
-                      document.getElementById('respuesta12').innerText = data.respuestas.respuesta2[0] || ""
-                      document.getElementById('respuesta22').innerText = data.respuestas.respuesta2[1] || ""
-                      document.getElementById('respuesta32').innerText = data.respuestas.respuesta2[2] || ""
-                      document.getElementById('respuesta13').innerText = data.respuestas.respuesta3[0] || ""
-                      document.getElementById('respuesta23').innerText = data.respuestas.respuesta3[1] || ""
-                      document.getElementById('respuesta33').innerText = data.respuestas.respuesta3[2] || ""                     
+                      console.log('Respuestas:', data.respuestas.respuestas);
+                      document.getElementById('respuesta1').innerText = data.respuestas.respuestas[0] || ""
+                      document.getElementById('respuesta2').innerText = data.respuestas.respuestas[1] || ""
+                      document.getElementById('respuesta3').innerText = data.respuestas.respuestas[2] || ""
+                      document.getElementById('respuesta4').innerText = data.respuestas.respuestas[4] || ""
                   } else {
                       throw new Error('Failed to retrieve the wordcloud image URL');
                   }

@@ -13,8 +13,8 @@
     <div class="logo">
     </div>
     
-    <div class="content-input">
-        <h1>Questions<span>.</span></h1>    
+    <div class="content-input" style="width: 110%;">
+        <h1 style="margin: 0px;">Questions<span>.</span></h1>    
         <p style="font-size: 0.8em; padding-bottom: 1em;">Where 1 is "poor" and 5 is "great", rate the following questions<p>    
         <p style="font-size: 1em;">How would you rate the Awards Event?</p>
             <div class="options">
@@ -57,7 +57,7 @@
 <script src="config.js"></script>
 <script>
     //on load check for auth and and adm
-    if (!localStorage.getItem('auth') || !localStorage.getItem('adm')) {
+    if (!localStorage.getItem('auth')) {
         window.location.href = '/index.html';
     }else{
         //do a load fetch and check the corresponding dial to the moment
@@ -102,9 +102,9 @@
         }
         //here i will need to get the values of the questions as int
         var values = {
-            "Awards Event": parseInt(awardsEventRating.value),
-            "Training Wednesday": parseInt(trainingWednesdayRating.value),
-            "Training Thursday": parseInt(trainingThursdayRating.value),
+            "AwardsEvent": parseInt(awardsEventRating.value),
+            "TrainingWednesday": parseInt(trainingWednesdayRating.value),
+            "TrainingThursday": parseInt(trainingThursdayRating.value),
             "question1": "",
             "question2": "",
         }

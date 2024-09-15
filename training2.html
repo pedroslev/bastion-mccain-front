@@ -15,17 +15,17 @@
     <div class="content-input">
             <div class="text-input-group">
                 <label>What did you like about the training?</label>
-                <div class="text-area-group">
+                <div class="text-area-group" style="margin-bottom: 10px;">
                     <textarea id="message1" name="message" rows="4" cols="50" placeholder="Answer with a phrase here..."></textarea>
                 </div>
             </div>
-            <div class="text-input-group">
+            <div class="text-input-group" style="margin-bottom: 0px;">
                 <label>What did you like less in the training?</label>
                 <div class="text-area-group">
                     <textarea id="message2" name="message" rows="4" cols="50" placeholder="Answer with a phrase here..."></textarea>
                 </div>
             </div>
-            <div class="buttons">
+            <div class="buttons" style="padding: 0px; margin: 0px;">
                 <button type="submit" id="send" class="primary">Send</button>
             </div>
     </div>
@@ -41,7 +41,7 @@
 <script src="config.js"></script>
 <script>
     //on load check for auth and and adm
-    if (!localStorage.getItem('auth') || !localStorage.getItem('adm')) {
+    if (!localStorage.getItem('auth')) {
         window.location.href = '/index.html';
     }else{
         //do a load fetch and check the corresponding dial to the moment
@@ -82,6 +82,12 @@
         var values = JSON.parse(localStorage.getItem('training'));
         values["question1"] = document.getElementById('message1').value;
         values["question2"] = document.getElementById('message2').value;
+        localStorage.setItem('training', JSON.stringify(values));
+        //check for empty
+        if(values["question1"] === "" || values["question2"] === ""){
+            alert("Please fill all the fields");
+            return;
+        }
         fetch(save_url, {
             method: 'POST',
             headers: {

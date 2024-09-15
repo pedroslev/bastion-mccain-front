@@ -8,17 +8,24 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&family=Red+Hat+Display:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="container">
-        <div class="logo">
-        </div>
-        <div class="content-success">
-            <div style="margin-bottom: 20em;">
-            <h2>Your response has been sent.</h2>
-            <img  style="height: 25em; border-radius: 10px;" id="iagenerated" src="media/iaplaceholder.png" alt="">
-            <p style="font-size: 1em;">The image you generated will be presented on the screen!</p>
-        </div>
+    <div class="container" style="margin-bottom: 0px; margin-top: 25px; padding-left: 20px; padding-right: 20px;">
+        <div class="content-success-ia" style="margin: 0px; padding: 0px;">
+            <div class="logo">
+            </div>
+            <h2>Your response has been sent<span>.</span></h2>
+            <div style="margin-bottom: 0em;">
+                <img  style="height: 20em; border-radius: 10px;" id="iagenerated" src="media/iaplaceholder.png" alt="">
+                <p style="font-size: 1em;">The image you generated will be presented on the screen!</p>
+            </div>
+            <div class="content-input" style="margin-top: 2em;">
+                <a id="download-link"  class="download-button">
+                    <img src="media/download.png" alt="Download">
+                    <p>Download</p>
+                </a>
+            </div>
         </div>
     </div>
+    
     <footer>
         <div class="footer-content">
             <img src="media/footer.png" alt="McCain Logo">
@@ -34,6 +41,14 @@
     //replace iagenerated image on dom
     var iagenerated = document.getElementById('iagenerated');
     iagenerated.src = imageurl;
+
+    // Set the download link
+    var downloadLink = document.getElementById('download-link');
+    downloadLink.href = imageurl;
+
+    // Optionally set the 'download' attribute to specify the filename
+    var filename = 'McCain_generated_image.png'; // You can customize the filename
+    downloadLink.setAttribute('download', filename)
     
     //timer of 2 minute to redirect to index again
     setTimeout(function(){

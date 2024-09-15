@@ -81,6 +81,15 @@ body {
     gap: 8px;
 }
 
+.content-success-ia {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
 h1 {
     color: #ffffff;
     font-family: 'Red Hat Display', sans-serif;
@@ -312,7 +321,7 @@ h3 span {
     width: 100vw;  /* Cover full width of the viewport */
     height: 100vh; /* Cover full height of the viewport */
     object-fit: cover;  /* Ensure the image covers the container without distortion */
-    z-index: 1;  /* Set the stacking order */
+    z-index: -3;  /* Set the stacking order */
 }
 
 /* Second image */
@@ -323,7 +332,7 @@ h3 span {
     width: 100vw;
     height: 80vh;
     object-fit: cover;
-    z-index: 2;  /* Higher z-index means this image is above the first one */
+    z-index: -2;  /* Higher z-index means this image is above the first one */
 }
 
 
@@ -347,6 +356,20 @@ h3 span {
     border: 2px solid #FEE000; /* Borde amarillo */
     border-radius: 8px;
     margin: 10px;
+    table-layout: fixed; /* Fija el ancho de las celdas */
+    border-collapse: separate; /* Asegura que los bordes sean separados para mantener el redondeo */
+    border-spacing: 0; /* Elimina el espacio entre las celdas */
+    overflow: hidden;
+  }
+
+  .tabla-moment2 {
+    position: absolute;
+    top: 30px;
+    width: 95%;
+    height: 80%; /* Ajuste para ocupar el 90% de la altura de la pantalla */
+    border: 2px solid #FEE000; /* Borde amarillo */
+    border-radius: 8px;
+    margin: 0px;
     table-layout: fixed; /* Fija el ancho de las celdas */
     border-collapse: separate; /* Asegura que los bordes sean separados para mantener el redondeo */
     border-spacing: 0; /* Elimina el espacio entre las celdas */
@@ -388,4 +411,30 @@ h3 span {
     100% {
         transform: rotate(360deg);
     }
+}
+
+
+.download-button {
+    color: inherit; /* Inherit the text color from the parent */
+    text-decoration: none; /* Remove the underline */
+    
+}
+
+.download-button p {
+    color: inherit; /* Ensure text color is consistent */
+}
+
+.download-button:visited {
+    color: inherit; /* Prevent color change after visiting */
+}
+
+.download-button:hover,
+.download-button:active {
+    color: inherit; /* Prevent color change on hover and active states */
+    text-decoration: none; /* Ensure underline doesn't appear */
+}
+
+.download-button:focus {
+    outline: none; /* Remove default focus outline */
+    box-shadow: 0 0 0 2px #0057e7; /* Optional: Add custom focus indicator */
 }
