@@ -10,7 +10,7 @@
 <body class="no-margin">
     <div class="container-bigscreen">
 
-        <img style="height: 93%;" id="wordcloud_image">
+        <img style="height: 90%; z-index: 1;" id="wordcloud_image">
     
     </div>
     <footer>
@@ -22,9 +22,11 @@
     <script src="config.js"></script>
     <script>
         var generateWordCloudUrl = config.backendUrl+"/generate-wordcloud";
-
-        window.addEventListener('load', function() {
-            // Request to generate the word cloud and get the image URL
+        
+        function startPolling() {
+            setInterval(generateWordcloud, 5000);
+        }
+        function generateWordcloud(){
             fetch(generateWordCloudUrl)
                 .then(response => response.json())
                 .then(data => {
@@ -32,7 +34,7 @@
                     if (data.wordcloud_image_url) {
                         console.log('Wordcloud image URL:', data.wordcloud_image_url);
                         var wordcloudImage = document.getElementById('wordcloud_image');
-                        wordcloudImage.src = data.wordcloud_image_url;
+                        wordcloudImage.src = data.wordcloud_image_url + '?t=' + new Date().getTime();
                     } else {
                         throw new Error('Failed to retrieve the wordcloud image URL');
                     }
@@ -41,11 +43,13 @@
                     // Handle any errors
                     console.error('Error:', error);
                 });
-        });
+        }
 
         var auth = localStorage.getItem('auth');
         if (!auth) {
             window.location.href = '/index.html';
+        }else{
+            startPolling();
         }
         var load_endpoint = config.backendUrl + "/load";
         // Fetch load data from server
