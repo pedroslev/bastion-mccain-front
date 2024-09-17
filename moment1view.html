@@ -45,6 +45,8 @@
       var auth = localStorage.getItem('auth');
       if (!auth) {
           window.location.href = '/index.html';
+      }else{
+        startPolling();
       }
       var load_endpoint = config.backendUrl + "/load";
       // Fetch load data from server
@@ -71,9 +73,9 @@
 
       //render frontend answers
       var getAnswers = config.backendUrl+"/moment1";
-      window.addEventListener('load', function() {
-          // Request to generate the word cloud and get the image URL
-          fetch(getAnswers)
+
+      function getMomentAnswers(){
+        fetch(getAnswers)
               .then(response => response.json())
               .then(data => {
                   // Check if the URL is provided in the response
@@ -96,7 +98,11 @@
                   // Handle any errors
                   console.error('Error:', error);
               });
-      });
+      }
+     
+    function startPolling() {
+        setInterval(getMomentAnswers, 5000);
+    }
 
 
     </script>

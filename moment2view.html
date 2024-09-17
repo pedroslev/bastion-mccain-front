@@ -17,8 +17,14 @@
         <tbody>
           <tr>
             <td style="width: 100%;" id="respuesta1"></td>
+          </tr>
+          <tr>
             <td style="width: 100%;" id="respuesta2"></td>
+          </tr>
+          <tr>
             <td style="width: 100%;" id="respuesta3"></td>
+          </tr>
+          <tr>
             <td style="width: 100%;" id="respuesta4"></td>
           </tr>
         </tbody>
@@ -34,6 +40,8 @@
       var auth = localStorage.getItem('auth');
       if (!auth) {
           window.location.href = '/index.html';
+      }else{
+          startPolling();
       }
       var load_endpoint = config.backendUrl + "/load";
       // Fetch load data from server
@@ -57,11 +65,11 @@
               console.error('Error fetching load data:', error);
               alert('Ha ocurrido un error en el sistema, por favor contacte a su administrador');
           });
-
-      //render frontend answers
-      var getAnswers = config.backendUrl+"/moment2";
-      window.addEventListener('load', function() {
-          // Request to generate the word cloud and get the image URL
+          function startPolling() {
+              setInterval(getMomentAnswer, 5000);
+          }
+          function getMomentAnswer(){
+            // Request to generate the word cloud and get the image URL
           fetch(getAnswers)
               .then(response => response.json())
               .then(data => {
@@ -71,7 +79,7 @@
                       document.getElementById('respuesta1').innerText = data.respuestas.respuestas[0] || ""
                       document.getElementById('respuesta2').innerText = data.respuestas.respuestas[1] || ""
                       document.getElementById('respuesta3').innerText = data.respuestas.respuestas[2] || ""
-                      document.getElementById('respuesta4').innerText = data.respuestas.respuestas[4] || ""
+                      document.getElementById('respuesta4').innerText = data.respuestas.respuestas[3] || ""
                   } else {
                       throw new Error('Failed to retrieve the wordcloud image URL');
                   }
@@ -80,7 +88,11 @@
                   // Handle any errors
                   console.error('Error:', error);
               });
-      });
+          }
+
+      //render frontend answers
+      var getAnswers = config.backendUrl+"/moment2";
+      
 
 
     </script>
