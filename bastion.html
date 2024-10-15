@@ -14,52 +14,25 @@
     </div>
     <div class="content-input">
       
-        <h1>Administrator<span>.</span></h1>
+        <h1>Administrador<span>.</span></h1>
             <div class="radio-group">
                 <label>
                     <input type="radio" name="option" value="NULL" checked>
-                    On Hold
-                </label>
-                <label>
-                    <input type="radio" name="option" value="WORDCLOUD">
-                    What do you hope to get from our time together?
-                </label>
-                <label>
-                <input type="radio" name="option" value="MOMENTO1">
-                     LATAM Top Initiatives & Fundamental Principles
-                </label>
-                <label>
-                    <input type="radio" name="option" value="MOMENTO2">
-                    Share your single biggest takeaway
-                </label>
-                <label>
-                    <input type="radio" name="option" value="MOMENTO3">
-                    What are your Highlights from our B/O Sessions
+                    En espera
                 </label>
                 <label>
                     <input type="radio" name="option" value="IA">
-                    AI - Personal Commitment
-                </label>
-                <label>
-                    <input type="radio" name="option" value="MOMENTO4">
-                    Share your feedback about summit
-                </label>
-                <label>
-                    <input type="radio" name="option" value="TRAINING">
-                    Training 19/09
+                    AI - Compromiso personal
                 </label>
             </div>
             <div class="buttons">
-                <button type="submit" id="save" class="primary">Save</button>
+                <button type="submit" id="save" class="primary">Guardar</button>
             </div>
     </div>
     <div class="content-input">
         <a id="exit">
             <img src="media/exit.png" alt="Exit Icon">
-            <p>Exit</p>
-        </a>
-        <a id="restartWordcloud">
-            <p>Restart word cloud</p>
+            <p>Salir</p>
         </a>
     </div>
 </div>
@@ -119,16 +92,6 @@
         window.location.href = '/index.html';
     });
 
-    //RESTART WORDCLOUD
-    document.getElementById('restartWordcloud').addEventListener('click', () => {
-        fetch(restart_url, {
-            method: 'GET'
-        })
-        .then(response => response.json())
-        .then(data => {
-            alert("Nube de palabras reiniciada");
-        });
-    });
 
     //SAVE BUTTON
     document.getElementById('save').addEventListener('click', () => {

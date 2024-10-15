@@ -16,15 +16,19 @@
             
             <form>
                 <div class="text-input-group">
-                    <h2>Please enter your name</h2>
+                    <h2>Nombre</h2>
                         <input type="text" id="name" name="name" placeholder="Enter your name here">
                 </div>
+                <div class="text-input-group">
+                    <h2>Apellido:</h2>
+                    <input type="text" id="surname" name="surname" placeholder="Enter your name here">
+                </div>
                 <div class="text-area-group">
-                    <h2>What is your commitment for 2030?</h2>
+                    <h2>¿Cuál es tu compromiso de cara al 2030?</h2>
                     <textarea id="message" name="message" rows="4" cols="50" placeholder="Answer with a phrase here..."></textarea>
                 </div>
                 <div class="buttons">
-                    <button type="button" class="primary" id="send">Send</button>
+                    <button type="button" class="primary" id="send">Enviar</button>
                     <span class="spinner" id="spinner" style="display:none;"></span>
                 </div>
             </form>
@@ -32,7 +36,7 @@
         <div class="content-input">
             <a id="exit">
                 <img src="media/exit.png" alt="Exit Icon">
-                <p>Exit</p>
+                <p>Salir</p>
             </a>
         </div>
     </div>
@@ -90,6 +94,7 @@
         document.getElementById('send').addEventListener('click', () => {
             var respuesta = document.getElementById('message').value;
             var name = document.getElementById('name').value;
+            var surname = document.getElementById('surname').value;
             document.getElementById('spinner').style.display = 'inline-block';
             // Disable send button
             document.getElementById('send').disabled = true;
@@ -102,7 +107,8 @@
             },
             body: JSON.stringify({ 
                 "text": respuesta,
-                "name": name
+                "name": name,
+                "surname": surname
              })
             }).then(response => response.json())
             .then(data => {
