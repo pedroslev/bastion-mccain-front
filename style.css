@@ -275,19 +275,20 @@ h3 span {
 }
 
 .logo-bs {
-    width: 198px;
-    height: 69px;
+    width: 25%;
+    height: 150px;
     flex-shrink: 0;
     background-image: url('media/headerLogo.png');
     background-position: center center;
-    background-size: cover;
+    background-size: contain;
     background-repeat: no-repeat;
-
 }
+
 
 .footer-img-bs {
     width: 267px;
     height: 53px;
+    margin-right: 50px;
     flex-shrink: 0;
     background-image: url('media/footer.png');
     background-position: center center;
@@ -297,9 +298,9 @@ h3 span {
 }
 
 .footer-bs {
+    padding-left: 50px;
     display: flex;
     flex-direction: row;
-    padding: 32px 48px;
     justify-content: space-between;
     align-items: center;
     border-bottom: 10px solid var(--McCain-Yellow, #FEE000);
